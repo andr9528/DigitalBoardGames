@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chess.Console
+namespace Chess.Program
 {
     class Program
     {
