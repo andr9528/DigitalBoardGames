@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Chess.Lib
+﻿namespace Chess.Lib.Concrete
 {
     public class Class1
     {
