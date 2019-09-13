@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Chess.Lib.Enum\Chess.Lib.Enum.csproj" />
+    <ProjectReference Include="..\Chess.Repository.Core\Chess.Repository.Core.csproj" />
+  </ItemGroup>
+
 </Project>
