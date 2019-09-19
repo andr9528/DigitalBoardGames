@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Chess.Lib.Enum;
 using Chess.Repository.Core;
 
 namespace Chess.Lib.Core
@@ -7,9 +8,11 @@ namespace Chess.Lib.Core
     {
         IBoard Board { get; set; }
         List<IPlayer> Players { get; set; }
-        List<IRule> Rules { get; set; }
+        IRuleSet RuleSet { get; set; }
         int Turn { get; set; }
 
+
         bool HandleTurn(IPlayer player);
+        bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }
 }

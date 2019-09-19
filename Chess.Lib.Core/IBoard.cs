@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using Chess.Lib.Enum;
 using Chess.Repository.Core;
 
 namespace Chess.Lib.Core
 {
     public interface IBoard : IEntity   
     {
-        List<IRule> Rules { get; set; }
+        IRuleSet RuleSet { get; set; }
+
+        bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }
 }

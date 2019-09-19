@@ -2,6 +2,6 @@
 {
     public enum RuleDirection
     {
-        Null, Forward, Backward, Omni
+        Null, Up, Down, Omni
     }
 }

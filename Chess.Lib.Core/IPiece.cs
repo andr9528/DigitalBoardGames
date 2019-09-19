@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Chess.Lib.Enum;
 using Chess.Repository.Core;
 
 namespace Chess.Lib.Core
@@ -6,9 +7,10 @@ namespace Chess.Lib.Core
     public interface IPiece : IEntity
     {
         List<IMove> MoveHistory { get; set; }
-        List<IRule> Rules { get; set; }
+        IRuleSet RuleSet { get; set; }
+        bool Alive { get; set; }
 
 
-        bool VerifyMove(IMove move);
+        bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }
 }

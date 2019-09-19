@@ -8,5 +8,7 @@ namespace Chess.Lib.Core
     {
         PlayerColour Colour { get; set; }
         List<IPiece> Pieces { get; set; }
+        PlayerFacing Facing { get; set; }
+
     }
 }

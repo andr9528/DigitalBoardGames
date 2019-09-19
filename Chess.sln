@@ -9,16 +9,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Lib.Core", "Chess.Lib
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Test", "Chess.Test\Chess.Test.csproj", "{4AB95D6A-C04F-4D93-A41D-63D532BAF676}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Program", "Chess.Console\Chess.Program.csproj", "{269A6D99-C267-404B-AFD5-B02E9D866DB4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53A924D2-0BF1-4FE2-BDA3-AC148C642E1C}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Repository.Core", "Chess.Repository.Core\Chess.Repository.Core.csproj", "{5B6CCD0E-7DC7-46B8-8069-E6E92DB53B01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Repository.Core", "Chess.Repository.Core\Chess.Repository.Core.csproj", "{5B6CCD0E-7DC7-46B8-8069-E6E92DB53B01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Lib.Enum", "Chess.Lib.Enum\Chess.Lib.Enum.csproj", "{C73B55A4-DAC8-4862-818E-722B3EB2844D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Lib.Enum", "Chess.Lib.Enum\Chess.Lib.Enum.csproj", "{C73B55A4-DAC8-4862-818E-722B3EB2844D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Startup.Core", "Chess.Startup.Core\Chess.Startup.Core.csproj", "{79CB8C99-BFD8-4620-927F-D91004187D36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Repository.EntityFramework", "Chess.Repository.EntityFramework\Chess.Repository.EntityFramework.csproj", "{575B768C-CB76-405D-B2E6-4E4C8A9C21E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Api", "Chess.Api\Chess.Api.csproj", "{D3DC6F63-A0F9-475D-AAF8-4AA42E326F91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +42,6 @@ Global
 		{4AB95D6A-C04F-4D93-A41D-63D532BAF676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB95D6A-C04F-4D93-A41D-63D532BAF676}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB95D6A-C04F-4D93-A41D-63D532BAF676}.Release|Any CPU.Build.0 = Release|Any CPU
-		{269A6D99-C267-404B-AFD5-B02E9D866DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{269A6D99-C267-404B-AFD5-B02E9D866DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{269A6D99-C267-404B-AFD5-B02E9D866DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{269A6D99-C267-404B-AFD5-B02E9D866DB4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5B6CCD0E-7DC7-46B8-8069-E6E92DB53B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B6CCD0E-7DC7-46B8-8069-E6E92DB53B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B6CCD0E-7DC7-46B8-8069-E6E92DB53B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +50,18 @@ Global
 		{C73B55A4-DAC8-4862-818E-722B3EB2844D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C73B55A4-DAC8-4862-818E-722B3EB2844D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C73B55A4-DAC8-4862-818E-722B3EB2844D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79CB8C99-BFD8-4620-927F-D91004187D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79CB8C99-BFD8-4620-927F-D91004187D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79CB8C99-BFD8-4620-927F-D91004187D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79CB8C99-BFD8-4620-927F-D91004187D36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575B768C-CB76-405D-B2E6-4E4C8A9C21E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575B768C-CB76-405D-B2E6-4E4C8A9C21E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{575B768C-CB76-405D-B2E6-4E4C8A9C21E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575B768C-CB76-405D-B2E6-4E4C8A9C21E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3DC6F63-A0F9-475D-AAF8-4AA42E326F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3DC6F63-A0F9-475D-AAF8-4AA42E326F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3DC6F63-A0F9-475D-AAF8-4AA42E326F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3DC6F63-A0F9-475D-AAF8-4AA42E326F91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
