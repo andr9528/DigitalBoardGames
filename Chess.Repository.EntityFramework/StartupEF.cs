@@ -22,7 +22,7 @@ namespace Chess.Repository.EntityFramework
         {
             services.AddDbContext<ChessRepository>(option => option.UseSqlServer(Configuration.GetConnectionString(ConnectionStringName)));
 
-            services.AddTransient(typeof(IGenericRepository), typeof(GenericEntityRepositoryHandler));
+            services.AddTransient(typeof(IGenericRepository), typeof(GenericRepositoryHandler));
 
             Console.WriteLine("Finished Configuring Services for Entity Framework...");
         }

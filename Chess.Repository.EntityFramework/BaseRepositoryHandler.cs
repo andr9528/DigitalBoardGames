@@ -10,10 +10,10 @@ namespace Chess.Repository.EntityFramework
     /// <summary>  
     ///  This class should be accessed via the Generic or Serializable classes that inherit from it.  
     /// </summary>   
-    public abstract class BaseEntityRepositoryHandler : IBaseRepository
+    public abstract class BaseRepositoryHandler : IBaseRepository
     {
         internal ChessRepository repo = null;
-        public BaseEntityRepositoryHandler(ChessRepository repo)
+        public BaseRepositoryHandler(ChessRepository repo)
         {
             this.repo = repo;
         }

@@ -4,9 +4,9 @@ using Chess.Repository.Core;
 
 namespace Chess.Repository.EntityFramework
 {
-    public class GenericEntityRepositoryHandler : BaseEntityRepositoryHandler, IGenericRepository
+    public class GenericRepositoryHandler : BaseRepositoryHandler, IGenericRepository
     {
-        public GenericEntityRepositoryHandler(ChessRepository repository) : base(repository)
+        public GenericRepositoryHandler(ChessRepository repository) : base(repository)
         {
 
         }
