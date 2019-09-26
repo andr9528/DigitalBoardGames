@@ -13,5 +13,6 @@ namespace Chess.Lib.Concrete
         public List<IPiece> Pieces { get; set; }
         public PlayerFacing Facing { get; set; }
         public string Name { get; set; }
+        public int GameId { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Chess.Lib.Core;
 using Chess.Lib.Enum;
+using Chess.Repository.Core;
 
 namespace Chess.Lib.Concrete.Pieces
 {
@@ -10,7 +11,7 @@ namespace Chess.Lib.Concrete.Pieces
         /// This Constructor is to be used when creating a new game.
         /// </summary>
         /// <param name="board">The board that this piece will be on. Is used to look up its rules</param>
-        public Knight(IBoard board)
+        public Knight(IBoard board, IGenericRepository handler)
         {
             var boardType = board.GetType();
         }

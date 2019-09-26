@@ -1,5 +1,6 @@
 ﻿using Chess.Lib.Core;
 using Chess.Lib.Enum;
+using Chess.Repository.Core;
 
 namespace Chess.Lib.Concrete
 {
@@ -12,6 +13,20 @@ namespace Chess.Lib.Concrete
         public IRuleSet RuleSet { get; set; }
         public int Turn { get; set; }
 
+        /// <summary>
+        /// This Constructor is to be used when creating a new game.
+        /// </summary>
+        /// <param name="handler"></param>
+        public Game(IGenericRepository handler)
+        {
+            
+        }
+
+        /// <summary>
+        /// This Constructor is to be used by...
+        ///  - Entity Framework
+        ///  - As input to 'GenericRepositoryHandler' Methods.
+        /// </summary>
         public Game()
         {
             

@@ -1,5 +1,6 @@
 ﻿using Chess.Lib.Core;
 using Chess.Lib.Enum;
+using Chess.Repository.Core;
 
 namespace Chess.Lib.Concrete.Boards
 {
@@ -10,7 +11,7 @@ namespace Chess.Lib.Concrete.Boards
         /// </summary>
         /// <param name="player1Name"> The Name of player one</param>
         /// <param name="player2Name"> The Name of player two</param>
-        public TwoPlayers(string player1Name, string player2Name)
+        public TwoPlayers(IGenericRepository handler, string player1Name, string player2Name)
         {
             
         }

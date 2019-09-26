@@ -10,6 +10,7 @@ namespace Chess.Lib.Core
         List<IPiece> Pieces { get; set; }
         PlayerFacing Facing { get; set; }
         string Name { get; set; }
+        int GameId { get; set; }
 
     }
 }
