@@ -182,7 +182,7 @@ namespace Chess.Test
         private protected IGenericRepository GetHandler()
         {
             using var factory = new ContextFactory();
-            var context = factory.CreateContext<ChessRepository>();
+            var context = factory.CreateMemoryContext<ChessRepository>();
             var handler = new GenericRepositoryHandler(context);
             return handler;
         }
