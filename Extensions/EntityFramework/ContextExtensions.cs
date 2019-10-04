@@ -25,6 +25,7 @@ namespace Extensions.EntityFramework
 
         public static IQueryable<T> Set<T>(this DbContext context, T type)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
             // Get the generic type definition 
             var method =
                 typeof(DbContext).GetMethod(nameof(DbContext.Set), BindingFlags.Public | BindingFlags.Instance);
