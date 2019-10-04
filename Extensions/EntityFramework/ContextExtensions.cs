@@ -7,6 +7,7 @@ namespace Extensions.EntityFramework
 {
     public static class ContextExtensions
     {
+        // Source: https://stackoverflow.com/questions/21533506/find-a-specified-generic-dbset-in-a-dbcontext-dynamically-when-i-have-an-entity
 
         #region Deprecated
         //public static IQueryable<object> Set(this DbContext context, Type T)
