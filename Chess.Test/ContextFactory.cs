@@ -4,6 +4,7 @@ using Chess.Repository.Core;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Extensions.EntityFramework;
 
 namespace Chess.Test
 {
@@ -76,10 +77,28 @@ namespace Chess.Test
                     throw new ArgumentException($"{type.ReflectedType} Does not implement Interface {typeof(IEntity).Name}");
                 }
 
+                var memoryDbSet = memoryContext.Set(Activator.CreateInstance(type.ReflectedType ?? throw new InvalidOperationException()));
+
                 if (amount == -1)
                 {
-                    memoryContext.Entry(type.ReflectedType);
+                    var copiedElements = physicalContext.Set(Activator.CreateInstance(type.ReflectedType)).ToList();
+                    
+                    foreach (var element in copiedElements)
+                    {
+                        memoryDbSet.Append(element);
+                    }
                 }
+                else
+                {
+                    var copiedElements = physicalContext.Set(Activator.CreateInstance(type.ReflectedType)).Take(amount);
+                    
+                    foreach (var element in copiedElements)
+                    {
+                        memoryDbSet.Append(element);
+                    }
+                }
+
+                memoryContext.SaveChanges();
             }
 
             return memoryContext;
