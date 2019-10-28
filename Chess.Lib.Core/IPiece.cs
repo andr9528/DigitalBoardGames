@@ -9,7 +9,7 @@ namespace Chess.Lib.Core
         List<IMove> MoveHistory { get; set; }
         IRuleSet RuleSet { get; set; }
         bool Alive { get; set; }
-
+        string Discriminator { get; }
 
         bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }

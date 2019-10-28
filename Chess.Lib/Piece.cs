@@ -12,6 +12,8 @@ namespace Chess.Lib.Concrete
         public List<IMove> MoveHistory { get; set; }
         public IRuleSet RuleSet { get; set; }
         public bool Alive { get; set; }
+        public string Discriminator { get; private set;}
+
         public abstract bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }
 }
