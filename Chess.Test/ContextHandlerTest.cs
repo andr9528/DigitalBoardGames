@@ -110,7 +110,7 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new TwoPlayers(sut, "Player1", "Player2"));
+            var actual = sut.Add(new TwoPlayers(sut, new Player(){ Name = "Player1"}, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Assert
@@ -275,11 +275,11 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new TwoPlayers(sut, "Player1", "Player2"));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
-            var actual = sut.Find(new TwoPlayers(sut, "Player1", "Player2"));
+            var actual = sut.Find(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
 
             // Assert
             Assert.NotNull(actual);
@@ -317,7 +317,7 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new TwoPlayers(sut, "Player1", "Player2"));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act

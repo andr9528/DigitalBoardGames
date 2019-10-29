@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Chess.Lib.Concrete;
+using Chess.Repository.EntityFramework.Config;
+using Microsoft.EntityFrameworkCore;
 
 namespace Chess.Repository.EntityFramework
 {
@@ -20,9 +22,12 @@ namespace Chess.Repository.EntityFramework
         // e.g
         // public virtual DbSet<YourDomainClass> YourDomainClassInPlural { get; set; }
 
+        public virtual DbSet<Piece> Pieces { get; set; }
+        public virtual DbSet<RuleSet> RuleSets { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // To Lazy Load properties they require the keywork Virtual.
+            // To Lazy Load properties they require the keyword Virtual.
             // Making use of Lazy load means that the property only loads as it is about to be used,
             // which improves performance of the program
             optionsBuilder.UseLazyLoadingProxies(useLazyLoading);
@@ -31,12 +36,13 @@ namespace Chess.Repository.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Create a new class under Config, with the name of the domain class you wish to persist,
-            // ending it in Config, to differnetiate it from the actual class
+            // ending it in Config, to differentiate it from the actual class
 
             // e.g
             // modelBuilder.ApplyConfiguration(new YourDomainClassConfig());
 
-
+            modelBuilder.ApplyConfiguration(new PieceConfig());
+            modelBuilder.ApplyConfiguration(new RuleSetConfig());
         }
     }
 }
