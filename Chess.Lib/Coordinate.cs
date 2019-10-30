@@ -2,14 +2,12 @@
 
 namespace Chess.Lib.Concrete
 {
-    public class Move : IMove
+    public class Coordinate : ICoordinate
     {
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
-        public ICoordinate From { get; set; }
-        public ICoordinate To { get; set; }
-        public int Turn { get; set; }
-        public int PieceId { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

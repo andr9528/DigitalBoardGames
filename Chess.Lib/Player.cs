@@ -9,10 +9,7 @@ namespace Chess.Lib.Concrete
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
-        public PlayerColour Colour { get; set; }
-        public List<IPiece> Pieces { get; set; }
-        public PlayerFacing Facing { get; set; }
         public string Name { get; set; }
-        public int GameId { get; set; }
+        public List<IPlayerBoard> Boards { get; set; }
     }
 }

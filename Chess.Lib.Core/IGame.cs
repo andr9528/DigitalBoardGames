@@ -9,6 +9,7 @@ namespace Chess.Lib.Core
         IBoard Board { get; set; }
         IRuleSet RuleSet { get; set; }
         int Turn { get; set; }
+        bool GameOver { get; set; }
 
 
         bool HandleTurn(IPlayer player);

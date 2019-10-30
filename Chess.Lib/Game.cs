@@ -12,14 +12,15 @@ namespace Chess.Lib.Concrete
         public IBoard Board { get; set; }
         public IRuleSet RuleSet { get; set; }
         public int Turn { get; set; }
+        public bool GameOver { get; set; }
 
         /// <summary>
         /// This Constructor is to be used when creating a new game.
         /// </summary>
         /// <param name="handler"></param>
-        public Game(IGenericRepository handler)
+        public Game(IGenericRepository handler, IBoard board)
         {
-            
+            Board = board;
         }
 
         /// <summary>

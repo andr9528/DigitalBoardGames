@@ -13,6 +13,8 @@ namespace Chess.Lib.Concrete
         public IRuleSet RuleSet { get; set; }
         public bool Alive { get; set; }
         public string Discriminator { get; private set;}
+        public int PlayerBoardId { get; set; }
+        public IPlayerBoard PlayerBoard { get; set; }
 
         public abstract bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }

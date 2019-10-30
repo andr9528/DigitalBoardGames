@@ -7,8 +7,7 @@ namespace Chess.Lib.Concrete
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public ICoordinate Coordinate { get; set; }
         public int PieceId { get; set; }
     }
 }

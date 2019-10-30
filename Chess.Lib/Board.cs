@@ -11,7 +11,10 @@ namespace Chess.Lib.Concrete
         public bool IsInstantiated { get; set; }
         public IRuleSet RuleSet { get; set; }
         public List<IField> Fields { get; set; }
-        public List<IPlayer> Players { get; set; }
+        public List<IPlayerBoard> Players { get; set; }
+        public int GameId { get; set; }
+        public IGame Game { get; set; }
+
         public abstract bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }
 }

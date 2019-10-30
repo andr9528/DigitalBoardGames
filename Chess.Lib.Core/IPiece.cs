@@ -10,6 +10,8 @@ namespace Chess.Lib.Core
         IRuleSet RuleSet { get; set; }
         bool Alive { get; set; }
         string Discriminator { get; }
+        int PlayerBoardId { get; set; }
+        IPlayerBoard PlayerBoard { get; set; }
 
         bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }

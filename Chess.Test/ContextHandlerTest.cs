@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Chess.Lib.Concrete;
 using Chess.Lib.Concrete.Boards;
 using Chess.Lib.Concrete.Pieces;
@@ -32,11 +33,10 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new Pawn(new TwoPlayers(), sut));
-            sut.Save();
+            Action actual = () => sut.Add(new Pawn(new TwoPlayers(), sut));
 
             // Assert
-            Assert.True(actual);
+            Assert.Throws<InvalidOperationException>(actual);
         }
         [Fact]
         public void InsertKnight()
@@ -45,11 +45,10 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new Knight(new TwoPlayers(), sut));
-            sut.Save();
+            Action actual = () => sut.Add(new Knight(new TwoPlayers(), sut));
 
             // Assert
-            Assert.True(actual);
+            Assert.Throws<InvalidOperationException>(actual);
         }
         [Fact]
         public void InsertRook()
@@ -58,11 +57,10 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new Rook(new TwoPlayers(), sut));
-            sut.Save();
+            Action actual = () => sut.Add(new Rook(new TwoPlayers(), sut));
 
             // Assert
-            Assert.True(actual);
+            Assert.Throws<InvalidOperationException>(actual);
         }
         [Fact]
         public void InsertBishops()
@@ -71,11 +69,10 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new Bishops(new TwoPlayers(), sut));
-            sut.Save();
+            Action actual = () => sut.Add(new Bishops(new TwoPlayers(), sut));
 
             // Assert
-            Assert.True(actual);
+            Assert.Throws<InvalidOperationException>(actual);
         }
         [Fact]
         public void InsertQueen()
@@ -84,11 +81,10 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new Queen(new TwoPlayers(), sut));
-            sut.Save();
+            Action actual = () => sut.Add(new Queen(new TwoPlayers(), sut));
 
             // Assert
-            Assert.True(actual);
+            Assert.Throws<InvalidOperationException>(actual);
         }
         [Fact]
         public void InsertKing()
@@ -97,11 +93,10 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new King(new TwoPlayers(), sut));
-            sut.Save();
+            Action actual = () => sut.Add(new King(new TwoPlayers(), sut));
 
             // Assert
-            Assert.True(actual);
+            Assert.Throws<InvalidOperationException>(actual);
         }
         [Fact]
         public void InsertTwoPlayerBoard()
@@ -117,13 +112,27 @@ namespace Chess.Test
             Assert.True(actual);
         }
         [Fact]
-        public void InsertGame()
+        public void InsertPlayerBoard()
         {
             // Arrange
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new Game(sut));
+            Action actual = () => sut.Add(new PlayerBoard());
+            sut.Save();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(actual);
+        }
+        [Fact]
+        public void InsertGame()
+        {
+            // Arrange
+            var sut = GetHandler();
+            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
+
+            // Act
+            var actual = sut.Add(new Game(sut, board));
             sut.Save();
 
             // Assert
@@ -179,6 +188,18 @@ namespace Chess.Test
             // Assert
             Assert.Throws<InvalidOperationException>(actual);
         }
+        [Fact]
+        public void InsertCoordinate()
+        {
+            // Arrange
+            var sut = GetHandler();
+
+            // Act
+            Action actual = () => sut.Add(new Coordinate());
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(actual);
+        }
         #endregion
 
         #region Read
@@ -187,12 +208,12 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new Pawn(new TwoPlayers(), sut));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
 
             // Act
-            var actual = sut.Find(new Pawn(new TwoPlayers(), sut));
+            var actual = sut.FindMultiple(new Pawn() { PlayerBoardId = 1 }).First();
 
             // Assert
             Assert.NotNull(actual);
@@ -202,12 +223,12 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new Knight(new TwoPlayers(), sut));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
 
             // Act
-            var actual = sut.Find(new Knight(new TwoPlayers(), sut));
+            var actual = sut.FindMultiple(new Knight() { PlayerBoardId = 1 }).First();
 
             // Assert
             Assert.NotNull(actual);
@@ -217,12 +238,12 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new Rook(new TwoPlayers(), sut));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
 
             // Act
-            var actual = sut.Find(new Rook(new TwoPlayers(), sut));
+            var actual = sut.FindMultiple(new Rook() { PlayerBoardId = 1 }).First();
 
             // Assert
             Assert.NotNull(actual);
@@ -232,11 +253,11 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new Bishops(new TwoPlayers(), sut));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
-            var actual = sut.Find(new Bishops(new TwoPlayers(), sut));
+            var actual = sut.FindMultiple(new Bishops() { PlayerBoardId = 1 }).First();
 
             // Assert
             Assert.NotNull(actual);
@@ -246,11 +267,11 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new Queen(new TwoPlayers(), sut));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
-            var actual = sut.Find(new Queen(new TwoPlayers(), sut));
+            var actual = sut.Find(new Queen() { PlayerBoardId = 1 });
 
             // Assert
             Assert.NotNull(actual);
@@ -260,12 +281,12 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new King(new TwoPlayers(), sut));
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
 
             // Act
-            var actual = sut.Find(new King(new TwoPlayers(), sut));
+            var actual = sut.Find(new King() {PlayerBoardId = 1});
 
             // Assert
             Assert.NotNull(actual);
@@ -279,7 +300,21 @@ namespace Chess.Test
             sut.Save();
 
             // Act
-            var actual = sut.Find(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            var actual = sut.Find(new TwoPlayers() {GameId = 1});
+
+            // Assert
+            Assert.NotNull(actual);
+        }
+        [Fact]
+        public void ReadPlayerBoard()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+
+            // Act
+            var actual = sut.Find(new PlayerBoard() {BoardId = 1, PlayerId = 1});
 
             // Assert
             Assert.NotNull(actual);
@@ -289,10 +324,12 @@ namespace Chess.Test
         {
             // Arrange
             var sut = GetHandler();
-            sut.Add(new Game(sut));
+            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
+            sut.Add(new Game(sut, board));
+            sut.Save();
 
             // Act
-            var actual = sut.Find(new Game(sut));
+            var actual = sut.Find(new Game() {Board = board, Turn = 0});
 
             // Assert
             Assert.NotNull(actual);
@@ -350,9 +387,210 @@ namespace Chess.Test
             // Assert
             Assert.Throws<InvalidOperationException>(actual);
         }
+        [Fact]
+        public void ReadCoordinate()
+        {
+            // Arrange
+            var sut = GetHandler();
 
+            // Act
+            Action actual = () => sut.Find(new Coordinate());
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(actual);
+        }
         #endregion
 
+        #region Update
+        [Fact]
+        public void UpdatePawn()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.FindMultiple(new Pawn() {PlayerBoardId = 1}).First();
+            obj.Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdateKnight()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.FindMultiple(new Knight() { PlayerBoardId = 1 }).First();
+            obj.Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdateRook()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.FindMultiple(new Rook() { PlayerBoardId = 1 }).First();
+            obj.Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdateBishops()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.FindMultiple(new Bishops() { PlayerBoardId = 1 }).First();
+            obj.Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdateQueen()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.Find(new Queen() { PlayerBoardId = 1 });
+            obj.Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdateKing()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.Find(new King() { PlayerBoardId = 1 });
+            obj.Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+            
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdateTwoPlayerBoard()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.Find(new TwoPlayers() {GameId = 1});
+            obj.Players.First().Pieces.Find(x => x.Discriminator == nameof(Queen)).Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdatePlayerBoard()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.Find(new PlayerBoard() {BoardId = 1, PlayerId = 1});
+            obj.Pieces.Find(x => x.Discriminator == nameof(Queen)).Alive = false;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdateGame()
+        {
+            // Arrange
+            var sut = GetHandler();
+            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
+            sut.Add(new Game(sut, board));
+            sut.Save();
+            var obj = sut.Find(new Game() {Board = board, Turn = 0});
+            obj.Turn = 666;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void UpdateRuleSet()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new King(new TwoPlayers(), sut));
+            sut.Save();
+            var obj = sut.Find(new RuleSet() { Type = SetType.Piece, TypeName = nameof(King) });
+            obj.Type = SetType.Game;
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void UpdatePlayer()
+        {
+            // Arrange
+            var sut = GetHandler();
+            sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+            var obj = sut.Find(new Player() {Name = "Player1"});
+            obj.Name = "ReadyPlayerOne";
+
+            // Act
+            var actual = sut.Update(obj);
+            sut.Save();
+
+            // Assert
+            Assert.True(actual);
+        }
+        #endregion
         #endregion
 
         private protected IGenericRepository GetHandler()

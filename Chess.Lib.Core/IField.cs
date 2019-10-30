@@ -4,8 +4,7 @@ namespace Chess.Lib.Core
 {
     public interface IField : IEntity
     {
-        int X { get; set; }
-        int Y { get; set; }
+        ICoordinate Coordinate { get; set; }
         int PieceId { get; set; }
     }
 }

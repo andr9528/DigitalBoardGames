@@ -8,7 +8,9 @@ namespace Chess.Lib.Core
     {
         IRuleSet RuleSet { get; set; }
         List<IField> Fields { get; set; }
-        List<IPlayer> Players { get; set; }
+        List<IPlayerBoard> Players { get; set; }
+        int GameId { get; set; }
+        IGame Game { get; set; }
 
         bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }
