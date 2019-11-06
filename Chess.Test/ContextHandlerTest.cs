@@ -4,8 +4,8 @@ using Chess.Lib.Concrete;
 using Chess.Lib.Concrete.Boards;
 using Chess.Lib.Concrete.Pieces;
 using Chess.Lib.Enum;
-using Chess.Repository.Core;
 using Chess.Repository.EntityFramework;
+using Repository.Core;
 using Xunit;
 
 namespace Chess.Test
@@ -593,11 +593,10 @@ namespace Chess.Test
         #endregion
         #endregion
 
-        private protected IGenericRepository GetHandler()
+        private IGenericRepository GetHandler()
         {
             using var factory = new ContextFactory();
-            var context = factory.CreateMemoryContext<ChessRepository>();
-            var handler = new GenericRepositoryHandler(context);
+            var handler = factory.GetHandler(factory.CreateMemoryContext<ChessRepository>());
             return handler;
         }
     }

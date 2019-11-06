@@ -1,8 +1,8 @@
 ﻿using System;
-using Chess.Repository.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository.Core;
 
 
 namespace Chess.Repository.EntityFramework

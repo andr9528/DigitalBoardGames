@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chess.Repository.Core
+namespace Repository.Core
 {
     public interface IEntity
     {

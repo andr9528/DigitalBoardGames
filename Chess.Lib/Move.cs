@@ -8,8 +8,11 @@ namespace Chess.Lib.Concrete
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
         public ICoordinate From { get; set; }
+        public int CoordinateFromId { get; set; }
         public ICoordinate To { get; set; }
+        public int CoordinateToId { get; set; }
         public int Turn { get; set; }
+        public IPiece Piece { get; set; }
         public int PieceId { get; set; }
     }
 }

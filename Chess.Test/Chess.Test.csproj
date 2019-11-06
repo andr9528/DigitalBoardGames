@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chess.Lib\Chess.Lib.Concrete.csproj" />
-    <ProjectReference Include="..\Chess.Repository.Core\Chess.Repository.Core.csproj" />
+    <ProjectReference Include="..\Chess.Repository.Core\Repository.Core.csproj" />
     <ProjectReference Include="..\Chess.Repository.EntityFramework\Chess.Repository.EntityFramework.csproj" />
     <ProjectReference Include="..\Extensions\Extensions.csproj" />
   </ItemGroup>

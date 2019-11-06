@@ -9,7 +9,7 @@ namespace Chess.Lib.Concrete
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
-        public List<IRule> Rules { get; set; }
+        public ICollection<IRule> Rules { get; set; }
         public SetType Type { get; set; }
         public string TypeName { get; set; }
     }

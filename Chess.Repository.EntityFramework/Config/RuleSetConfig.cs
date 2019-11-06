@@ -11,7 +11,6 @@ namespace Chess.Repository.EntityFramework.Config
             builder.HasKey(s => s.Id);
             builder.Property(x => x.Id).HasColumnName("RuleSetId");
 
-            // Defining Version as RowVersion -->
             builder.Property(x => x.RowVersion).IsRowVersion();
 
             builder.HasIndex(x => new {x.Type, x.TypeName}).HasName("TypeIndex").IsUnique();

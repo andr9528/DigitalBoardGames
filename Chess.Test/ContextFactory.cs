@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reflection;
-using Chess.Repository.Core;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Chess.Repository.EntityFramework;
 using Extensions.EntityFramework;
+using Repository.Core;
 
 namespace Chess.Test
 {
@@ -102,6 +103,16 @@ namespace Chess.Test
             }
 
             return memoryContext;
+        }
+
+        internal IGenericRepository GetHandler<T>(T context) where T : DbContext
+        {
+            IGenericRepository handler = null;
+            if(typeof(T) == typeof(ChessRepository))
+                handler = new GenericRepositoryHandler(context as ChessRepository);
+            if(handler != null)
+                return handler;
+            throw new ArgumentException("Imputed context doesn't match any known Handlers", nameof(context));
         }
     }
 }

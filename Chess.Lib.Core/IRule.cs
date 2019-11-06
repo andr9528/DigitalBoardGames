@@ -1,5 +1,5 @@
 ﻿using Chess.Lib.Enum;
-using Chess.Repository.Core;
+using Repository.Core;
 
 namespace Chess.Lib.Core
 {

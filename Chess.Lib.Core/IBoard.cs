@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using Chess.Lib.Enum;
-using Chess.Repository.Core;
+using Repository.Core;
 
 namespace Chess.Lib.Core
 {
     public interface IBoard : IEntity   
     {
         IRuleSet RuleSet { get; set; }
-        List<IField> Fields { get; set; }
-        List<IPlayerBoard> Players { get; set; }
+        int RuleSetId { get; set; }
+        ICollection<IField> Fields { get; set; }
+        ICollection<IPlayerBoard> Players { get; set; }
+        string Discriminator { get; }
         int GameId { get; set; }
         IGame Game { get; set; }
 

@@ -10,6 +10,6 @@ namespace Chess.Lib.Concrete
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
         public string Name { get; set; }
-        public List<IPlayerBoard> Boards { get; set; }
+        public ICollection<IPlayerBoard> Boards { get; set; }
     }
 }

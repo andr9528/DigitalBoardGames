@@ -9,8 +9,9 @@ namespace Chess.Lib.Concrete
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
-        public List<IMove> MoveHistory { get; set; }
+        public ICollection<IMove> MoveHistory { get; set; }
         public IRuleSet RuleSet { get; set; }
+        public int RuleSetId { get; set; }
         public bool Alive { get; set; }
         public string Discriminator { get; private set;}
         public int PlayerBoardId { get; set; }

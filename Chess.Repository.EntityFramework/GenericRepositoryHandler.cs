@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Chess.Repository.Core;
+using Repository.Core;
 
 namespace Chess.Repository.EntityFramework
 {

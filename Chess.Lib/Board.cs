@@ -10,8 +10,10 @@ namespace Chess.Lib.Concrete
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
         public IRuleSet RuleSet { get; set; }
-        public List<IField> Fields { get; set; }
-        public List<IPlayerBoard> Players { get; set; }
+        public int RuleSetId { get; set; }
+        public ICollection<IField> Fields { get; set; }
+        public ICollection<IPlayerBoard> Players { get; set; }
+        public string Discriminator { get; private set; }
         public int GameId { get; set; }
         public IGame Game { get; set; }
 

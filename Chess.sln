@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Repository.Core", "Chess.Repository.Core\Chess.Repository.Core.csproj", "{5B6CCD0E-7DC7-46B8-8069-E6E92DB53B01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Core", "Chess.Repository.Core\Repository.Core.csproj", "{5B6CCD0E-7DC7-46B8-8069-E6E92DB53B01}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Lib.Enum", "Chess.Lib.Enum\Chess.Lib.Enum.csproj", "{C73B55A4-DAC8-4862-818E-722B3EB2844D}"
 EndProject
@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Repository.EntityFram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Api", "Chess.Api\Chess.Api.csproj", "{D3DC6F63-A0F9-475D-AAF8-4AA42E326F91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Extensions\Extensions.csproj", "{6A1DD50B-FCC5-4EC4-BE82-700783A4CA6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions", "Extensions\Extensions.csproj", "{6A1DD50B-FCC5-4EC4-BE82-700783A4CA6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

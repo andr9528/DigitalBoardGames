@@ -1,6 +1,6 @@
 ﻿using Chess.Lib.Core;
 using Chess.Lib.Enum;
-using Chess.Repository.Core;
+using Repository.Core;
 
 namespace Chess.Lib.Concrete
 {
@@ -10,7 +10,9 @@ namespace Chess.Lib.Concrete
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
         public IBoard Board { get; set; }
+        public int BoardId { get; set; }
         public IRuleSet RuleSet { get; set; }
+        public int RuleSetId { get; set; }
         public int Turn { get; set; }
         public bool GameOver { get; set; }
 

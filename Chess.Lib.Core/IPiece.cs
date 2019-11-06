@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Chess.Lib.Enum;
-using Chess.Repository.Core;
+using Repository.Core;
 
 namespace Chess.Lib.Core
 {
     public interface IPiece : IEntity
     {
-        List<IMove> MoveHistory { get; set; }
+        ICollection<IMove> MoveHistory { get; set; }
         IRuleSet RuleSet { get; set; }
+        int RuleSetId { get; set; }
         bool Alive { get; set; }
         string Discriminator { get; }
         int PlayerBoardId { get; set; }

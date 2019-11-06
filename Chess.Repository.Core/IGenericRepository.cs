@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Chess.Repository.Core
+namespace Repository.Core
 {
     public interface IGenericRepository  : IBaseRepository
     {
