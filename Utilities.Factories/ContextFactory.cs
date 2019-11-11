@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Reflection;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Chess.Repository.EntityFramework;
-using Extensions.EntityFramework;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Repository.Core;
+using Utilities.Extensions.EntityFramework;
 
-namespace Chess.Test
+namespace Utilities.Factories
 {
     public class ContextFactory : IDisposable
     {
@@ -105,7 +104,7 @@ namespace Chess.Test
             return memoryContext;
         }
 
-        internal IGenericRepository GetHandler<T>(T context) where T : DbContext
+        public IGenericRepository GetHandler<T>(T context) where T : DbContext
         {
             IGenericRepository handler = null;
             if(typeof(T) == typeof(ChessRepository))

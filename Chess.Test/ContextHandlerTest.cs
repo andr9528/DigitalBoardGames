@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Chess.Lib.Concrete;
 using Chess.Lib.Concrete.Boards;
 using Chess.Lib.Concrete.Pieces;
+using Chess.Lib.Core;
 using Chess.Lib.Enum;
 using Chess.Repository.EntityFramework;
 using Repository.Core;
+using Utilities.Factories;
 using Xunit;
 
 namespace Chess.Test
@@ -511,7 +514,7 @@ namespace Chess.Test
             sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new TwoPlayers() {GameId = 1});
-            obj.Players.First().Pieces.Find(x => x.Discriminator == nameof(Queen)).Alive = false;
+            ((List<IPiece>) obj.Players.First().Pieces).Find(x => x.Discriminator == nameof(Queen)).Alive = false;
 
             // Act
             var actual = sut.Update(obj);
@@ -528,7 +531,7 @@ namespace Chess.Test
             sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new PlayerBoard() {BoardId = 1, PlayerId = 1});
-            obj.Pieces.Find(x => x.Discriminator == nameof(Queen)).Alive = false;
+            ((List<IPiece>) obj.Pieces).Find(x => x.Discriminator == nameof(Queen)).Alive = false;
 
             // Act
             var actual = sut.Update(obj);

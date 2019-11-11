@@ -2,24 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-
-    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="xunit" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Chess.Lib\Chess.Lib.Concrete.csproj" />
     <ProjectReference Include="..\Chess.Repository.Core\Repository.Core.csproj" />
     <ProjectReference Include="..\Chess.Repository.EntityFramework\Chess.Repository.EntityFramework.csproj" />
     <ProjectReference Include="..\Utilities.Extensions\Utilities.Extensions.csproj" />
-    <ProjectReference Include="..\Utilities.Factories\Utilities.Factories.csproj" />
   </ItemGroup>
 
 </Project>

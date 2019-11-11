@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
-namespace Extensions.EntityFramework
+namespace Utilities.Extensions.EntityFramework
 {
     public static class ContextExtensions
     {

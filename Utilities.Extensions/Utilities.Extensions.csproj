@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Chess.Repository.Core\Repository.Core.csproj" />
+  </ItemGroup>
+
 </Project>
