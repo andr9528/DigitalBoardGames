@@ -127,6 +127,8 @@ namespace Chess.Test
             // Assert
             Assert.Throws<InvalidOperationException>(actual);
         }
+
+        // Will only ever be successful if the chain of object creation, that should happen on creating a game, is fully and correctly implemented.
         [Fact]
         public void InsertGame()
         {
