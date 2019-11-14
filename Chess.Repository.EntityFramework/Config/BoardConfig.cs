@@ -1,4 +1,5 @@
 ﻿using Chess.Lib.Concrete;
+using Chess.Lib.Concrete.Boards;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,14 +9,12 @@ namespace Chess.Repository.EntityFramework.Config
     {
         public void Configure(EntityTypeBuilder<Board> builder)
         {
-            builder.HasKey(s => s.Id);
+            builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("BoardId");
 
             builder.Property(x => x.RowVersion).IsRowVersion();
 
-            builder.HasDiscriminator(x => x.Discriminator);
-
-            builder.HasOne(x => x.RuleSet).WithOne().HasForeignKey<Board>(x => x.RuleSetId);
+            builder.HasOne(x => (RuleSet)x.RuleSet).WithOne().HasForeignKey<Board>(x => x.RuleSetId);
         }
     }
 }

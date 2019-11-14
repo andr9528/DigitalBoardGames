@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Chess.Lib.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Repository.Core;
@@ -12,25 +13,16 @@ namespace Chess.Repository.EntityFramework
     /// </summary>   
     public abstract class BaseRepositoryHandler : IBaseRepository
     {
-        internal ChessRepository repo = null;
-        public BaseRepositoryHandler(ChessRepository repo)
+        internal ChessRepository Repo = null;
+
+        protected BaseRepositoryHandler(ChessRepository repo)
         {
-            this.repo = repo;
-        }
-
-        public void ResetRepo()
-        {
-            throw new NotImplementedException();
-
-            //repo.Dispose();
-            //repo = null;
-
-            //repo = new EntityRepository(_useLazyLoading);
+            Repo = repo;
         }
 
         public void Save()
         {
-            repo.SaveChanges();
+            Repo.SaveChanges();
         }
 
         #region Help Methods
@@ -128,7 +120,7 @@ namespace Chess.Repository.EntityFramework
         }
         */
 
-        
+
         #endregion
 
         #region Add Methods
@@ -142,14 +134,35 @@ namespace Chess.Repository.EntityFramework
             EntityEntry entry = null;
             EntityState state = EntityState.Unchanged;
             
-            entry = repo.Add(y);
+            entry = Repo.Add(y);
 
             state = CheckEntryState(state, entry);
             return VerifyEntryState(state, EntityState.Added);
         }        
          */
-
         
+        internal bool AddGame(IGame x)
+        {
+            EntityEntry entry = null;
+            EntityState state = EntityState.Unchanged;
+
+            entry = Repo.Add(x);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Added);
+        }
+
+        internal bool AddRuleSet(IRuleSet x)
+        {
+            EntityEntry entry = null;
+            EntityState state = EntityState.Unchanged;
+
+            entry = Repo.Add(x);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Added);
+        }
+
 
         #endregion
 
@@ -171,7 +184,7 @@ namespace Chess.Repository.EntityFramework
         }        
          */
 
-        
+
         #endregion
 
         #region Delete Methods
@@ -192,7 +205,7 @@ namespace Chess.Repository.EntityFramework
         }        
          */
 
-        
+
         #endregion
     }
 }

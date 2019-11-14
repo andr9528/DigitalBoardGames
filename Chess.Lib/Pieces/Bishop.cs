@@ -4,13 +4,13 @@ using Repository.Core;
 
 namespace Chess.Lib.Concrete.Pieces
 {
-    public class Bishops : Piece
+    public class Bishop : Piece
     {
         /// <summary>
         /// This Constructor is to be used when creating a new game.
         /// </summary>
         /// <param name="board">The board that this piece will be on. Is used to look up its rules</param>
-        public Bishops(IBoard board, IGenericRepository handler)
+        public Bishop(IBoard board, IGenericRepository handler)
         {
             var boardType = board.GetType();
         }
@@ -19,7 +19,7 @@ namespace Chess.Lib.Concrete.Pieces
         ///  - Entity Framework
         ///  - As input to 'GenericRepositoryHandler' Methods.
         /// </summary>
-        public Bishops()
+        public Bishop()
         {
 
         }

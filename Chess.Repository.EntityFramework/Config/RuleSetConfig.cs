@@ -1,4 +1,5 @@
-﻿using Chess.Lib.Concrete;
+﻿using System.Collections.Generic;
+using Chess.Lib.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,7 +15,8 @@ namespace Chess.Repository.EntityFramework.Config
             builder.Property(x => x.RowVersion).IsRowVersion();
 
             builder.HasIndex(x => new {x.Type, x.TypeName}).HasName("TypeIndex").IsUnique();
-            builder.HasMany(x => x.Rules).WithOne();
+
+            builder.HasMany(x => (ICollection<Rule>)x.Rules).WithOne();
         }
     }
 }

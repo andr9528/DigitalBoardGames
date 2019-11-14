@@ -72,7 +72,7 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            Action actual = () => sut.Add(new Bishops(new TwoPlayers(), sut));
+            Action actual = () => sut.Add(new Bishop(new TwoPlayers(), sut));
 
             // Assert
             Assert.Throws<InvalidOperationException>(actual);
@@ -108,11 +108,11 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            var actual = sut.Add(new TwoPlayers(sut, new Player(){ Name = "Player1"}, new Player() { Name = "Player2" }));
+            Action actual = () => sut.Add(new TwoPlayers(sut, new Player(){ Name = "Player1"}, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Assert
-            Assert.True(actual);
+            Assert.Throws<InvalidOperationException>(actual);
         }
         [Fact]
         public void InsertPlayerBoard()
@@ -260,7 +260,7 @@ namespace Chess.Test
             sut.Save();
 
             // Act
-            var actual = sut.FindMultiple(new Bishops() { PlayerBoardId = 1 }).First();
+            var actual = sut.FindMultiple(new Bishop() { PlayerBoardId = 1 }).First();
 
             // Assert
             Assert.NotNull(actual);
@@ -462,7 +462,7 @@ namespace Chess.Test
             var sut = GetHandler();
             sut.Add(new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
-            var obj = sut.FindMultiple(new Bishops() { PlayerBoardId = 1 }).First();
+            var obj = sut.FindMultiple(new Bishop() { PlayerBoardId = 1 }).First();
             obj.Alive = false;
 
             // Act

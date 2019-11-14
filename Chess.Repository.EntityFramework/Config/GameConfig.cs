@@ -13,8 +13,8 @@ namespace Chess.Repository.EntityFramework.Config
 
             builder.Property(x => x.RowVersion).IsRowVersion();
 
-            builder.HasOne(x => x.Board).WithOne(x => (Game) x.Game).HasForeignKey<Game>(x => x.BoardId).HasForeignKey<Board>(x => x.GameId);
-            builder.HasOne(x => x.RuleSet).WithOne().HasForeignKey<Game>(x => x.RuleSetId);
+            builder.HasOne(x => (Board)x.Board).WithOne(x => (Game) x.Game).HasForeignKey<Board>(x => x.GameId)/*.HasForeignKey<Game>(x => x.BoardId)*/;
+            builder.HasOne(x => (RuleSet)x.RuleSet).WithOne().HasForeignKey<Game>(x => x.RuleSetId);
         }
     }
 }

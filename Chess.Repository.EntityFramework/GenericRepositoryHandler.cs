@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Chess.Lib.Core;
 using Repository.Core;
 
 namespace Chess.Repository.EntityFramework
@@ -24,6 +25,33 @@ namespace Chess.Repository.EntityFramework
                 // case IYourDomainClass y:
                 //    result = AddYourDomainClass(y);
                 //    break;
+                case IPiece p:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a Piece directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case IBoard b:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a Board directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case IPlayerBoard p:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a PlayerBoard directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case IField f:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a Field directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case IRule r:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a Rule directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case IPlayer p:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a Player directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case ICoordinate c:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a Coordinate directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case IGame g:
+                    result = AddGame(g);
+                    break;
+                case IRuleSet r:
+                    result = AddRuleSet(r);
+                    break;
                 default:
                     throw new Exception("ERROR ERROR ERROR");
             }

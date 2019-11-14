@@ -1,5 +1,7 @@
 ﻿using Chess.Lib.Concrete;
 using Chess.Repository.EntityFramework.Config;
+using Chess.Repository.EntityFramework.Config.Boards;
+using Chess.Repository.EntityFramework.Config.Pieces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -24,6 +26,9 @@ namespace Chess.Repository.EntityFramework
         // public virtual DbSet<YourDomainClass> YourDomainClassInPlural { get; set; }
 
         public virtual DbSet<Piece> Pieces { get; set; }
+        public virtual DbSet<Board> Boards { get; set; }
+
+
         public virtual DbSet<RuleSet> RuleSets { get; set; }
         public virtual DbSet<Rule> Rules { get; set; }
         public virtual DbSet<PlayerBoard> PlayerBoards { get; set; }
@@ -31,7 +36,6 @@ namespace Chess.Repository.EntityFramework
         public virtual DbSet<Field> Fields { get; set; }
         public virtual DbSet<Move> Moves { get; set; }
         public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<Coordinate> Coordinates { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -50,7 +54,12 @@ namespace Chess.Repository.EntityFramework
             // e.g
             // modelBuilder.ApplyConfiguration(new YourDomainClassConfig());
 
+
+            //Abstract Classes Configuration
+            modelBuilder.ApplyConfiguration(new BoardConfig());
             modelBuilder.ApplyConfiguration(new PieceConfig());
+
+            // Standard Configs
             modelBuilder.ApplyConfiguration(new RuleSetConfig());
             modelBuilder.ApplyConfiguration(new RuleConfig());
             modelBuilder.ApplyConfiguration(new PlayerBoardConfig());
@@ -58,9 +67,18 @@ namespace Chess.Repository.EntityFramework
             modelBuilder.ApplyConfiguration(new FieldConfig());
             modelBuilder.ApplyConfiguration(new MoveConfig());
             modelBuilder.ApplyConfiguration(new GameConfig());
-            modelBuilder.ApplyConfiguration(new BoardConfig());
             modelBuilder.ApplyConfiguration(new CoordinateConfig());
 
+            //Boards
+            modelBuilder.ApplyConfiguration(new TwoPlayerConfig());
+
+            //Pieces
+            modelBuilder.ApplyConfiguration(new PawnConfig());
+            modelBuilder.ApplyConfiguration(new BishopConfig());
+            modelBuilder.ApplyConfiguration(new KingConfig());
+            modelBuilder.ApplyConfiguration(new KnightConfig());
+            modelBuilder.ApplyConfiguration(new QueenConfig());
+            modelBuilder.ApplyConfiguration(new RookConfig());
         }
     }
 }
