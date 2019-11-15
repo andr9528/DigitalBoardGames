@@ -13,6 +13,8 @@ namespace Chess.Lib.Core
         string Discriminator { get; }
         int PlayerBoardId { get; set; }
         IPlayerBoard PlayerBoard { get; set; }
+        IField Field { get; set; }
+        int FieldId { get; set; }
 
         bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }

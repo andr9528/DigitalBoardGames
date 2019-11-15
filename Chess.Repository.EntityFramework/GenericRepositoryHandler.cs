@@ -46,14 +46,18 @@ namespace Chess.Repository.EntityFramework
                 case ICoordinate c:
                     throw new InvalidOperationException(
                         "You are not allowed to add a Coordinate directly. Add it by creating and adding a 'Game' as it chains down to all the needed Entities.");
+                case IMove m:
+                    throw new InvalidOperationException(
+                        "You are not allowed to add a Move directly. Add it by creating and adding it to its Piece' 'MoveHistory'.");
                 case IGame g:
                     result = AddGame(g);
                     break;
                 case IRuleSet r:
                     result = AddRuleSet(r);
                     break;
+                
                 default:
-                    throw new Exception("ERROR ERROR ERROR");
+                    throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
 
             return result;
@@ -74,7 +78,7 @@ namespace Chess.Repository.EntityFramework
         bool IGenericRepository.Delete<T>(T element)
         {
             if (element.Id == 0)
-                throw new Exception(string.Format("I need an Id to figure out what to remove"), new ArgumentException("Id of predicate can't be 0"));
+                throw new Exception("I need an Id to figure out what to remove", new ArgumentException("Id of predicate can't be 0"));
             bool result = false;
 
             switch (element)
@@ -86,7 +90,7 @@ namespace Chess.Repository.EntityFramework
                 //    result = DeleteYourDomainClass(y);
                 //    break;
                 default:
-                    throw new Exception("ERROR ERROR ERROR");
+                    throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
 
             return result;
@@ -99,14 +103,44 @@ namespace Chess.Repository.EntityFramework
             IEntity entity = null;
             switch (predicate)
             {
-                // Create cases for all the different classes that should be retriable from the database
+                // Create cases for all the different classes that should be retrievable from the database
 
                 // Example:
                 // case IYourDomainClass y:
                 //    entity = FindYourDomainClass(y);
                 //    break;
+                case IPiece p:
+                    entity = FindPiece(p);
+                    break;
+                case IBoard b:
+                    entity = FindBoard(b);
+                    break;
+                case IPlayerBoard p:
+                    entity = FindPlayerBoard(p);
+                    break;
+                case IField f:
+                    entity = FindField(f);
+                    break;
+                case IPlayer p:
+                    entity = FindPlayer(p);
+                    break;
+                case IGame g:
+                    entity = FindGame(g);
+                    break;
+                case IRuleSet r:
+                    entity = FindRuleSet(r);
+                    break;
+                case ICoordinate c:
+                    throw new InvalidOperationException(
+                        "You are not allowed to find a coordinate by itself. Find it by finding it on either a Move or a Field");
+                case IRule r:
+                    throw new InvalidOperationException(
+                        "You are not allowed to find a rule by itself. Find it by finding its RuleSet");
+                case IMove m:
+                    throw new InvalidOperationException(
+                        "You are not allowed to find a Move by itself. Find it by finding its Piece");
                 default:
-                    throw new Exception("ERROR ERROR ERROR");
+                    throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
 
             return entity as T;
@@ -117,14 +151,44 @@ namespace Chess.Repository.EntityFramework
             ICollection<T> entities = null;
             switch (predicate)
             {
-                // Create cases for all the different classes that should be retriable from the database
+                // Create cases for all the different classes that should be retrievable from the database
 
                 // Example:
                 // case IYourDomainClass y:
                 //    entities = FindMultipleYourDomainClassInPlural(y) as ICollection<T>;
                 //    break;
+                case IPiece p:
+                    entities = FindMultiplePieces(p) as ICollection<T>;
+                    break;
+                case IBoard b:
+                    entities = FindMultipleBoards(b) as ICollection<T>;
+                    break;
+                case IPlayerBoard p:
+                    entities = FindMultiplePlayerBoards(p) as ICollection<T>;
+                    break;
+                case IField f:
+                    entities = FindMultipleFields(f) as ICollection<T>;
+                    break;
+                case IPlayer p:
+                    entities = FindMultiplePlayers(p) as ICollection<T>;
+                    break;
+                case IGame g:
+                    entities = FindMultipleGames(g) as ICollection<T>;
+                    break;
+                case IRuleSet r:
+                    entities = FindMultipleRuleSets(r) as ICollection<T>;
+                    break;
+                case ICoordinate c:
+                    throw new InvalidOperationException(
+                        "You are not allowed to find a coordinate by itself. Find it by finding it on either a Move or a Field");
+                case IRule r:
+                    throw new InvalidOperationException(
+                        "You are not allowed to find a rule by itself. Find it by finding its RuleSet");
+                case IMove m:
+                    throw new InvalidOperationException(
+                        "You are not allowed to find a Move by itself. Find it by finding its Piece");
                 default:
-                    throw new Exception("ERROR ERROR ERROR");
+                    throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
 
             return entities;
@@ -132,20 +196,19 @@ namespace Chess.Repository.EntityFramework
 
         bool IGenericRepository.Update<T>(T element)
         {
-            if (element.Id == 0)
-                throw new Exception(string.Format("I need an Id to figure out what to update"), new ArgumentException("Id of predicate can not be 0"));
+            if (element.Id == 0) throw new Exception(string.Format("I need an Id to figure out what to update"), new ArgumentException("Id of predicate can not be 0"));
             bool result = false;
 
             switch (element)
             {
-                //Create cases for all the differnet classes that should be updateable in the database.
+                //Create cases for all the different classes that should be updateable in the database.
 
                 // Example:
                 // case IYourDomainClass y:
                 //    result = UpdateYourDomainClass(y);
                 //    break;
                 default:
-                    throw new Exception("ERROR ERROR ERROR");
+                    throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
             
             return result;

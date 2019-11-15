@@ -13,9 +13,11 @@ namespace Chess.Lib.Concrete
         public IRuleSet RuleSet { get; set; }
         public int RuleSetId { get; set; }
         public bool Alive { get; set; }
-        public string Discriminator { get; private set;}
+        public string Discriminator { get; set;}
         public int PlayerBoardId { get; set; }
         public IPlayerBoard PlayerBoard { get; set; }
+        public IField Field { get; set; }
+        public int FieldId { get; set; }
 
         public abstract bool VerifyMove(IMove move, PlayerFacing directionFacing);
     }

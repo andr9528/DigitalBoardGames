@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Castle.Core.Internal;
+using Chess.Lib.Concrete;
 using Chess.Lib.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -67,18 +69,93 @@ namespace Chess.Repository.EntityFramework
         }
         */
 
-        
+        private IQueryable<Piece> BuildQuery(IPiece p, IQueryable<Piece> query)
+        {
+            if (p.PlayerBoardId != default) query = query.Where(x => x.PlayerBoardId == p.PlayerBoardId);
+            if (p.RuleSetId != default) query = query.Where(x => x.RuleSetId == p.RuleSetId);
+            if (p.Id != default) query = query.Where(x => x.Id == p.Id);
+            
+            if (!p.Discriminator.IsNullOrEmpty()) query = query.Where(x => x.Discriminator.Contains(p.Discriminator));
+            
+            return query;
+        }
+
+        private IQueryable<Board> BuildQuery(IBoard b, IQueryable<Board> query)
+        {
+            if (b.RuleSetId != default) query = query.Where(x => x.RuleSetId == b.RuleSetId);
+            if (b.GameId != default) query = query.Where(x => x.GameId == b.GameId);
+            if (b.Id != default) query = query.Where(x => x.Id == b.Id);
+
+            if (!b.Discriminator.IsNullOrEmpty()) query = query.Where(x => x.Discriminator.Contains(b.Discriminator));
+
+            return query;
+        }
+        private IQueryable<PlayerBoard> BuildQuery(IPlayerBoard b, IQueryable<PlayerBoard> query)
+        {
+            if (b.BoardId != default) query = query.Where(x => x.BoardId == b.BoardId);
+            if (b.PlayerId != default) query = query.Where(x => x.PlayerId == b.PlayerId);
+            if (b.Id != default) query = query.Where(x => x.Id == b.Id);
+            
+            if (b.Facing != default) query = query.Where(x => x.Facing == b.Facing);
+            if (b.Colour != default) query = query.Where(x => x.Colour == b.Colour);
+
+            return query;
+        }
+        private IQueryable<Game> BuildQuery(IGame g, IQueryable<Game> query)
+        {
+            if (g.BoardId != default) query = query.Where(x => x.BoardId == g.BoardId);
+            if (g.RuleSetId != default) query = query.Where(x => x.RuleSetId == g.RuleSetId);
+            if (g.Turn != default) query = query.Where(x => x.Turn == g.Turn);
+            if (g.Id != default) query = query.Where(x => x.Id == g.Id);
+
+            return query;
+        }
+        private IQueryable<RuleSet> BuildQuery(IRuleSet r, IQueryable<RuleSet> query)
+        {
+            if (r.Id != default) query = query.Where(x => x.Id == r.Id);
+
+            if (r.Type != default) query = query.Where(x => x.Type == r.Type);
+
+            if (!r.TypeName.IsNullOrEmpty()) query = query.Where(x => x.TypeName.Contains(r.TypeName));
+            
+            return query;
+        }
+        private IQueryable<Player> BuildQuery(IPlayer p, IQueryable<Player> query)
+        {
+            if (p.Id != default) query = query.Where(x => x.Id == p.Id);
+
+            if (!p.Name.IsNullOrEmpty()) query = query.Where(x => x.Name.Contains(p.Name));
+
+            return query;   
+        }
+        private IQueryable<Field> BuildQuery(IField f, IQueryable<Field> query)
+        {
+            query = query.Include(x => x.Coordinate);
+
+            if (f.Id != default) query = query.Where(x => x.Id == f.Id);
+            if (f.CoordinateId != default) query = query.Where(x => x.CoordinateId == f.CoordinateId);
+            if (f.PieceId != default) query = query.Where(x => x.PieceId == f.PieceId);
+            if (f.BoardId != default) query = query.Where(x => x.BoardId == f.BoardId);
+
+            if (f.Coordinate != default) 
+            {
+                if (f.Coordinate.X != default) query = query.Where(x => x.Coordinate.X == f.Coordinate.X);
+                if (f.Coordinate.Y != default) query = query.Where(x => x.Coordinate.Y == f.Coordinate.Y);
+            };
+
+            return query;
+        }
+
         #endregion
 
         #region Find Multiple Methods
 
         private ICollection<T> FindMultipleResults<T>(IQueryable<T> query) where T : class, IEntity
         {
-            var result = query.ToList().Distinct();
-            if (result.Count() > 0)
+            var result = query.ToList();
+            if (result.Any())
                 return new List<T>(result);
-            else
-                throw new Exception(string.Format("Found no result for {0}", typeof(T).Name));
+            throw new Exception($"Found no result for {typeof(T).Name}");
         }
         // Create methods for all the different classes, where you should be able to get multiple specific elements.
 
@@ -86,26 +163,75 @@ namespace Chess.Repository.EntityFramework
         /*
         internal ICollection<YourDomainClass> FindMultipleYourDomainClass(IYourDomainClass y)
         {
-            var query = repo.YourDomainClassInPlural.AsQueryable();
+            var query = Repo.YourDomainClassInPlural.AsQueryable();
             query = BuildFindYourDomainClassQuery(y, query);
 
             return FindMultipleResults(query);
         }
         */
-        
+
+        internal ICollection<Piece> FindMultiplePieces(IPiece p)
+        {
+            var query = Repo.Pieces.AsQueryable();
+            query = BuildQuery(p, query);  
+
+            return FindMultipleResults(query);
+        }
+        internal ICollection<Board> FindMultipleBoards(IBoard b)
+        {
+            var query = Repo.Boards.AsQueryable();
+            query = BuildQuery(b, query);
+
+            return FindMultipleResults(query);
+        }
+        internal ICollection<PlayerBoard> FindMultiplePlayerBoards(IPlayerBoard b)
+        {
+            var query = Repo.PlayerBoards.AsQueryable();
+            query = BuildQuery(b, query);
+
+            return FindMultipleResults(query);  
+        }
+        internal ICollection<Game> FindMultipleGames(IGame g)
+        {
+            var query = Repo.Games.AsQueryable();
+            query = BuildQuery(g, query);
+                    
+            return FindMultipleResults(query);
+        }
+        internal ICollection<RuleSet> FindMultipleRuleSets(IRuleSet r)
+        {
+            var query = Repo.RuleSets.AsQueryable();
+            query = BuildQuery(r, query);
+
+            return FindMultipleResults(query);
+        }
+        internal ICollection<Player> FindMultiplePlayers(IPlayer p)
+        {
+            var query = Repo.Players.AsQueryable();
+            query = BuildQuery(p, query);
+
+            return FindMultipleResults(query);
+        }
+        internal ICollection<Field> FindMultipleFields(IField p)
+        {
+            var query = Repo.Fields.AsQueryable();
+            query = BuildQuery(p, query);
+
+            return FindMultipleResults(query);
+        }
+
         #endregion
 
         #region Find Single Methods
 
         private T FindAResult<T>(IQueryable<T> query) where T : class, IEntity
         {
-            var result = query.ToList().Distinct();
+            var result = query.ToList();
             if (result.Count() == 1)
                 return result.First();
-            else if (result.Count() > 1)
-                throw new Exception(string.Format("More than 1 result found when searching for a {0}", typeof(T).Name));
-            else
-                throw new Exception(string.Format("No results found when searching for a {0}", typeof(T).Name));
+            if (result.Count() > 1)
+                throw new Exception($"More than 1 result found when searching for a single {typeof(T).Name}");
+            throw new Exception($"No results found when searching for a {typeof(T).Name}");
         }
         // Create methods for all the different classes, where you should be able to get one specific element.
 
@@ -113,13 +239,61 @@ namespace Chess.Repository.EntityFramework
         /*
         internal IYourDomainClass FindYourDomainClass(IYourDomainClass y)
         {
-            var query = repo.YourDomainClassAsPlural.AsQueryable();
+            var query = Repo.YourDomainClassAsPlural.AsQueryable();
             query = BuildFindYourDomainClassQuery(y, query);
 
             return FindAResult(query);
         }
         */
+        internal IPiece FindPiece(IPiece p)
+        {
+            var query = Repo.Pieces.AsQueryable();
+            query = BuildQuery(p, query);
 
+            return FindAResult(query);
+        }
+        internal IBoard FindBoard(IBoard b)
+        {
+            var query = Repo.Boards.AsQueryable();
+            query = BuildQuery(b, query);
+
+            return FindAResult(query);
+        }
+        internal IPlayerBoard FindPlayerBoard(IPlayerBoard b)
+        {
+            var query = Repo.PlayerBoards.AsQueryable();
+            query = BuildQuery(b, query);
+
+            return FindAResult(query);
+        }
+        internal IGame FindGame(IGame g)
+        {
+            var query = Repo.Games.AsQueryable();
+            query = BuildQuery(g, query);
+
+            return FindAResult(query);
+        }
+        internal IRuleSet FindRuleSet(IRuleSet r)
+        {
+            var query = Repo.RuleSets.AsQueryable();
+            query = BuildQuery(r, query);
+
+            return FindAResult(query);
+        }
+        internal IPlayer FindPlayer(IPlayer p)
+        {
+            var query = Repo.Players.AsQueryable();
+            query = BuildQuery(p, query);
+
+            return FindAResult(query);
+        }
+        internal IField FindField(IField f)
+        {
+            var query = Repo.Fields.AsQueryable();
+            query = BuildQuery(f, query);
+
+            return FindAResult(query);
+        }
 
         #endregion
 
@@ -140,7 +314,7 @@ namespace Chess.Repository.EntityFramework
             return VerifyEntryState(state, EntityState.Added);
         }        
          */
-        
+
         internal bool AddGame(IGame x)
         {
             EntityEntry entry = null;
@@ -162,7 +336,6 @@ namespace Chess.Repository.EntityFramework
             state = CheckEntryState(state, entry);
             return VerifyEntryState(state, EntityState.Added);
         }
-
 
         #endregion
 

@@ -4,8 +4,7 @@ namespace Chess.Lib.Core
 {
     public interface IMove : IEntity
     {
-        ICoordinate From { get; set; }
-        int CoordinateFromId { get; set; }
+        ICoordinate From { get; }
         ICoordinate To { get; set; }
         int CoordinateToId { get; set; }
         int Turn { get; set; }
