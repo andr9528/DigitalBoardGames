@@ -10,7 +10,7 @@ namespace Chess.Lib.Core
         int RuleSetId { get; set; }
         ICollection<IField> Fields { get; set; }
         ICollection<IPlayerBoard> Players { get; set; }
-        string Discriminator { get; }
+        string Discriminator { get; set; }
         int GameId { get; set; }
         IGame Game { get; set; }
 

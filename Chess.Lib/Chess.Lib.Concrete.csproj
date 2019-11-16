@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chess.Lib.Core\Chess.Lib.Core.csproj" />
+    <ProjectReference Include="..\Utilities.Extensions\Utilities.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

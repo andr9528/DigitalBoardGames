@@ -221,7 +221,7 @@ namespace Chess.Test
 
         #region Read
         [Fact]
-        public void FindPawn()
+        public void ReadPawn()
         {
             // Arrange
             var sut = GetHandler();
@@ -669,7 +669,7 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            Action actual = () => sut.Update(new RuleSet());
+            Action actual = () => sut.Update(new RuleSet() { Id = 1 });
 
             // Assert
             Assert.Throws<InvalidOperationException>(actual);
@@ -681,7 +681,7 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            Action actual = () => sut.Update(new Rule());
+            Action actual = () => sut.Update(new Rule() { Id = 1});
 
             // Assert
             Assert.Throws<InvalidOperationException>(actual);
@@ -693,7 +693,7 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            Action actual = () => sut.Update(new Coordinate());
+            Action actual = () => sut.Update(new Coordinate() { Id = 1 });
 
             // Assert
             Assert.Throws<InvalidOperationException>(actual);
@@ -705,7 +705,7 @@ namespace Chess.Test
             var sut = GetHandler();
 
             // Act
-            Action actual = () => sut.Update(new Move());
+            Action actual = () => sut.Update(new Move() { Id = 1 });
 
             // Assert
             Assert.Throws<InvalidOperationException>(actual);

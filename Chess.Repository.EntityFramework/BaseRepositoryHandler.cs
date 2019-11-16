@@ -350,13 +350,72 @@ namespace Chess.Repository.EntityFramework
             EntityEntry entry = null;
             EntityState state = EntityState.Unchanged;
             
-            entry = repo.Update(y);
+            entry = Repo.Update(y);
 
             state = CheckEntryState(state, entry);
             return VerifyEntryState(state, EntityState.Modified);
         }        
          */
+        internal bool UpdatePiece(IPiece p)
+        {
+            EntityEntry entry = null;
+            EntityState state = EntityState.Unchanged;
 
+            entry = Repo.Update(p);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Modified);
+        }
+        internal bool UpdateBoard(IBoard b)
+        {
+            EntityEntry entry = null;
+            EntityState state = EntityState.Unchanged;
+
+            entry = Repo.Update(b);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Modified);
+        }
+        internal bool UpdatePlayerBoard(IPlayerBoard b)
+        {
+            EntityEntry entry = null;
+            EntityState state = EntityState.Unchanged;
+
+            entry = Repo.Update(b);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Modified);
+        }
+        internal bool UpdateGame(IGame g)
+        {
+            EntityEntry entry = null;
+            EntityState state = EntityState.Unchanged;
+
+            entry = Repo.Update(g);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Modified);
+        }
+        internal bool UpdatePlayer(IPlayer p)
+        {
+            EntityEntry entry = null;
+            EntityState state = EntityState.Unchanged;
+
+            entry = Repo.Update(p);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Modified);
+        }
+        internal bool UpdateField(IField f)
+        {
+            EntityEntry entry = null;   
+            EntityState state = EntityState.Unchanged;
+
+            entry = Repo.Update(f);
+
+            state = CheckEntryState(state, entry);
+            return VerifyEntryState(state, EntityState.Modified);
+        }
 
         #endregion
 

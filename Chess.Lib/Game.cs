@@ -6,6 +6,7 @@ namespace Chess.Lib.Concrete
 {
     public class Game : IGame
     {
+        private readonly IGenericRepository _handler;
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
@@ -20,9 +21,12 @@ namespace Chess.Lib.Concrete
         /// This Constructor is to be used when creating a new game.
         /// </summary>
         /// <param name="handler"></param>
+        /// <param name="board"></param>
         public Game(IGenericRepository handler, IBoard board)
         {
+            _handler = handler;
             Board = board;
+            IsInstantiated = true;
         }
 
         /// <summary>

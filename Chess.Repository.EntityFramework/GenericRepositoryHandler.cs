@@ -55,7 +55,6 @@ namespace Chess.Repository.EntityFramework
                 case IRuleSet r:
                     result = AddRuleSet(r);
                     break;
-                
                 default:
                     throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
@@ -115,8 +114,8 @@ namespace Chess.Repository.EntityFramework
                 case IBoard b:
                     entity = FindBoard(b);
                     break;
-                case IPlayerBoard p:
-                    entity = FindPlayerBoard(p);
+                case IPlayerBoard b:
+                    entity = FindPlayerBoard(b);
                     break;
                 case IField f:
                     entity = FindField(f);
@@ -207,6 +206,32 @@ namespace Chess.Repository.EntityFramework
                 // case IYourDomainClass y:
                 //    result = UpdateYourDomainClass(y);
                 //    break;
+                case IPiece p:
+                    result = UpdatePiece(p);
+                    break;
+                case IBoard b:
+                    result = UpdateBoard(b);
+                    break;
+                case IPlayerBoard b:
+                    result = UpdatePlayerBoard(b);
+                    break;
+                case IField f:
+                    result = UpdateField(f);
+                    break;
+                case IGame g:
+                    result = UpdateGame(g);
+                    break;
+                case IPlayer p:
+                    result = UpdatePlayer(p);
+                    break;
+                case IRule r:
+                    throw new InvalidOperationException("You are not allowed to update a Rule.");
+                case ICoordinate c:
+                    throw new InvalidOperationException("You are not allowed to update a Coordinate.");
+                case IMove m:
+                    throw new InvalidOperationException("You are not allowed to update a Move.");
+                case IRuleSet r:
+                    throw new InvalidOperationException("You are not allowed to update a RuleSet.");
                 default:
                     throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }

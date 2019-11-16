@@ -13,7 +13,7 @@ namespace Chess.Lib.Concrete
         public int RuleSetId { get; set; }
         public ICollection<IField> Fields { get; set; }
         public ICollection<IPlayerBoard> Players { get; set; }
-        public string Discriminator { get; private set; }
+        public string Discriminator { get; set; }
         public int GameId { get; set; }
         public IGame Game { get; set; }
 
