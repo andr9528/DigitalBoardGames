@@ -1,4 +1,5 @@
-﻿using Chess.Lib.Core;
+﻿using System.Collections.Generic;
+using Chess.Lib.Core;
 using Chess.Lib.Enum;
 using Repository.Core;
 
@@ -27,6 +28,13 @@ namespace Chess.Lib.Concrete
             _handler = handler;
             Board = board;
             IsInstantiated = true;
+
+            var rules = new List<IRule>()
+            {
+
+            };
+
+            RuleSet = new RuleSet(typeof(Game), rules) {Type = SetType.Game};
         }
 
         /// <summary>

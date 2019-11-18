@@ -6,11 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Chess.Startup.Core
 {
-    public abstract class AStartup : IStartupEf
+    public abstract class AbstractStartup : IStartupEf
     {
         private IStartupEf _startupEf = null;
 
-        public AStartup(IConfiguration config = null, string connectionStringName = "")
+        public AbstractStartup(IConfiguration config = null, string connectionStringName = "")
         {
             if (config == null)
             {

@@ -18,5 +18,10 @@ namespace Chess.Lib.Concrete
         public IGame Game { get; set; }
 
         public abstract bool VerifyMove(IMove move, PlayerFacing directionFacing);
+
+        protected Board()
+        {
+            IsInstantiated = true;
+        }
     }
 }

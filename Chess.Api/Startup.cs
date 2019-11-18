@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Chess.Api
 {
-    public class Startup : AStartup
+    public class Startup : AbstractStartup
     {
         public Startup(IConfiguration configuration) : base(configuration, ConnectionString)
         {

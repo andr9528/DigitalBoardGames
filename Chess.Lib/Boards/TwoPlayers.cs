@@ -16,10 +16,9 @@ namespace Chess.Lib.Concrete.Boards
         /// </summary>
         /// <param name="handler"></param>
         /// <param name="players"></param>
-        public TwoPlayers(IGenericRepository handler, params Player[] players)
+        public TwoPlayers(IGenericRepository handler, params Player[] players) : base()
         {
             _handler = handler;
-            IsInstantiated = true;
 
             if (players.Length != 2)
                 throw new ArgumentException(
@@ -35,6 +34,13 @@ namespace Chess.Lib.Concrete.Boards
                 new PlayerBoard(_handler, this) {Player = players[0], Facing = facing1, Colour = colour1},
                 new PlayerBoard(_handler, this) {Player = players[1], Facing = facing2, Colour = colour2}
             };
+
+            var rules = new List<IRule>()
+            {
+
+            };
+
+            RuleSet = new RuleSet(typeof(TwoPlayers), rules) {Type = SetType.Board};
         }
 
         /// <summary>
