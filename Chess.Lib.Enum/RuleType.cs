@@ -2,6 +2,6 @@
 {
     public enum RuleType
     {
-        Null, Startup, Limit, Exchange
+        Null, GameStartup, PieceExchange, Attack, Movement
     }
-}
+}           

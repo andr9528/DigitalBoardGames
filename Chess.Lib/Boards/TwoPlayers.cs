@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Chess.Lib.Concrete.Pieces;
 using Chess.Lib.Core;
 using Chess.Lib.Enum;
 using Repository.Core;
@@ -37,7 +38,29 @@ namespace Chess.Lib.Concrete.Boards
 
             var rules = new List<IRule>()
             {
+                new Rule("Castling - King", "If both the King and a Rook has not moved yet, and no pieces exist between them", 
+                    "Move the king Two spaces toward the chosen Rook.")
+                {
+                    Type = RuleType.Movement, Movement = RuleMovement.MonoAxis, Case = RuleCase.Unique, 
+                    Value = 2, Target = $"{nameof(King)}", 
+                    Obstruction = RuleObstruction.Care, Requirement = RuleRequirement.FirstMove
+                },
 
+                new Rule("Castling - Far Rook", "If both the King and a Rook has not moved yet, and no pieces exist between them", 
+                    "Move the Rook Three spaces towards the King.")
+                {
+                    Type = RuleType.Movement, Movement = RuleMovement.MonoAxis, Case = RuleCase.Unique,
+                    Value = 3, Target = $"{nameof(Rook)}",
+                    Obstruction = RuleObstruction.Care, Requirement = RuleRequirement.FirstMove
+                },
+
+                new Rule("Castling - Close Rook", "If both the King and a Rook has not moved yet, and no pieces exist between them", 
+                    "Move the Rook Two spaces towards the King.")
+                {
+                    Type = RuleType.Movement, Movement = RuleMovement.MonoAxis, Case = RuleCase.Unique,
+                    Value = 2, Target = $"{nameof(Rook)}",
+                    Obstruction = RuleObstruction.Care, Requirement = RuleRequirement.FirstMove
+                }
             };
 
             RuleSet = new RuleSet(typeof(TwoPlayers), rules) {Type = SetType.Board};
