@@ -10,5 +10,6 @@ namespace Chess.Lib.Core
 
         SetType Type { get; set; }
         string TypeName { get; set; }
+        string BoardTypeName { get; set; }
     }
 }

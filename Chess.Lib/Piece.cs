@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Chess.Lib.Concrete.Boards;
 using Chess.Lib.Core;
 using Chess.Lib.Enum;
+using Repository.Core;
+using Utilities.Extensions.Exceptions;
 
 namespace Chess.Lib.Concrete
 {
@@ -32,6 +34,26 @@ namespace Chess.Lib.Concrete
                     return TwoPlayerRules();
                 default:
                     throw new Exception($"No Case exist for the BoardType: {boardType.Name}");
+            }
+        }
+
+        protected void SetupRuleSet(IGenericRepository handler, Type pieceType, Type boardType)
+        {
+            try
+            {
+                RuleSet = handler.Find(new RuleSet() {Type = SetType.Piece, TypeName = pieceType.Name, BoardTypeName = boardType.Name});
+            }
+            catch (IncorrectResultCountException e)
+            {
+                if (e.ToFew)
+                {
+                    RuleSet = new RuleSet(boardType, CreateRules(boardType), GetType()) {Type = SetType.Piece};
+
+                    handler.Add(RuleSet);
+                    handler.Save();
+                }
+                else
+                    throw;
             }
         }
 

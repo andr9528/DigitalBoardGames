@@ -14,14 +14,17 @@ namespace Chess.Lib.Concrete
         public ICollection<IRule> Rules { get; set; }
         public SetType Type { get; set; }
         public string TypeName { get; set; }
+        public string BoardTypeName { get; set; }
 
-        public RuleSet(Type type, List<IRule> rules)
+
+        public RuleSet(Type boardType, List<IRule> rules, Type type = null)
         {
             if (rules == null) throw new ArgumentNullException(nameof(rules));
-            if (rules.Count == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(rules));
+            //if (rules.Count == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(rules));
 
             Rules = rules;
-            TypeName = type.Name;
+            if (type != null) TypeName = type.Name;
+            BoardTypeName = boardType.Name;
             IsInstantiated = true;
         }
 

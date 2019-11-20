@@ -36,17 +36,24 @@ namespace Chess.Lib.Concrete.Boards
                 new PlayerBoard(_handler, this) {Player = players[1], Facing = facing2, Colour = colour2}
             };
 
+            SetupRuleSet();
+
+            
+        }
+
+        private void SetupRuleSet()
+        {
             var rules = new List<IRule>()
             {
-                new Rule("Castling - King", "If both the King and a Rook has not moved yet, and no pieces exist between them", 
+                new Rule("Castling - King", "If both the King and a Rook has not moved yet, and no pieces exist between them",
                     "Move the king Two spaces toward the chosen Rook.")
                 {
-                    Type = RuleType.Movement, Movement = RuleMovement.MonoAxis, Case = RuleCase.Unique, 
-                    Value = 2, Target = $"{nameof(King)}", 
+                    Type = RuleType.Movement, Movement = RuleMovement.MonoAxis, Case = RuleCase.Unique,
+                    Value = 2, Target = $"{nameof(King)}",
                     Obstruction = RuleObstruction.Care, Requirement = RuleRequirement.FirstMove
                 },
 
-                new Rule("Castling - Far Rook", "If both the King and a Rook has not moved yet, and no pieces exist between them", 
+                new Rule("Castling - Far Rook", "If both the King and a Rook has not moved yet, and no pieces exist between them",
                     "Move the Rook Three spaces towards the King.")
                 {
                     Type = RuleType.Movement, Movement = RuleMovement.MonoAxis, Case = RuleCase.Unique,
@@ -54,7 +61,7 @@ namespace Chess.Lib.Concrete.Boards
                     Obstruction = RuleObstruction.Care, Requirement = RuleRequirement.FirstMove
                 },
 
-                new Rule("Castling - Close Rook", "If both the King and a Rook has not moved yet, and no pieces exist between them", 
+                new Rule("Castling - Close Rook", "If both the King and a Rook has not moved yet, and no pieces exist between them",
                     "Move the Rook Two spaces towards the King.")
                 {
                     Type = RuleType.Movement, Movement = RuleMovement.MonoAxis, Case = RuleCase.Unique,
@@ -63,7 +70,7 @@ namespace Chess.Lib.Concrete.Boards
                 }
             };
 
-            RuleSet = new RuleSet(typeof(TwoPlayers), rules) {Type = SetType.Board};
+            RuleSet = new RuleSet(GetType(), rules) { Type = SetType.Board};
         }
 
         /// <summary>

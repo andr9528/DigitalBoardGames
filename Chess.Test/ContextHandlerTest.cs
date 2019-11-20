@@ -19,7 +19,7 @@ namespace Chess.Test
         //public void Test1()
         //{
         //    // Arrange
-        //    var sut = GetHandler();
+        //    var sut = ContextFactory.GetChessHandler();
 
         //    // Act
 
@@ -33,7 +33,7 @@ namespace Chess.Test
         public void InsertPawn()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Pawn(new TwoPlayers(), sut));
@@ -45,7 +45,7 @@ namespace Chess.Test
         public void InsertKnight()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Knight(new TwoPlayers(), sut));
@@ -57,7 +57,7 @@ namespace Chess.Test
         public void InsertRook()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Rook(new TwoPlayers(), sut));
@@ -69,7 +69,7 @@ namespace Chess.Test
         public void InsertBishops()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Bishop(new TwoPlayers(), sut));
@@ -81,7 +81,7 @@ namespace Chess.Test
         public void InsertQueen()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Queen(new TwoPlayers(), sut));
@@ -93,7 +93,7 @@ namespace Chess.Test
         public void InsertKing()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new King(new TwoPlayers(), sut));
@@ -105,7 +105,7 @@ namespace Chess.Test
         public void InsertTwoPlayerBoard()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new TwoPlayers(sut, new Player(){ Name = "Player1"}, new Player() { Name = "Player2" }));
@@ -118,7 +118,7 @@ namespace Chess.Test
         public void InsertPlayerBoard()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new PlayerBoard());
@@ -133,7 +133,7 @@ namespace Chess.Test
         public void InsertGame()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             // Act
@@ -148,7 +148,7 @@ namespace Chess.Test
         public void InsertRuleSet()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             var actual = sut.Add(new RuleSet());
@@ -161,7 +161,7 @@ namespace Chess.Test
         public void InsertMove()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Move());
@@ -173,7 +173,7 @@ namespace Chess.Test
         public void InsertField()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Field());
@@ -185,7 +185,7 @@ namespace Chess.Test
         public void InsertRule()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Rule());
@@ -197,7 +197,7 @@ namespace Chess.Test
         public void InsertPlayer()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Player());
@@ -209,7 +209,7 @@ namespace Chess.Test
         public void InsertCoordinate()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Add(new Coordinate());
@@ -224,7 +224,7 @@ namespace Chess.Test
         public void ReadPawn()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() {Name = "Player1"}, new Player() {Name = "Player2"});
 
             sut.Add(new Game(sut, board));
@@ -240,7 +240,7 @@ namespace Chess.Test
         public void ReadKnight()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -256,7 +256,7 @@ namespace Chess.Test
         public void ReadRook()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -272,7 +272,7 @@ namespace Chess.Test
         public void ReadBishop()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -288,7 +288,7 @@ namespace Chess.Test
         public void ReadQueen()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -304,7 +304,7 @@ namespace Chess.Test
         public void ReadKing()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -320,7 +320,7 @@ namespace Chess.Test
         public void ReadTwoPlayerBoard()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -336,7 +336,7 @@ namespace Chess.Test
         public void ReadPlayerBoard()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -352,7 +352,7 @@ namespace Chess.Test
         public void ReadGame()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -369,7 +369,7 @@ namespace Chess.Test
         public void ReadRuleSet()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -385,7 +385,7 @@ namespace Chess.Test
         public void ReadPlayer()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -401,7 +401,7 @@ namespace Chess.Test
         public void ReadField()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -417,7 +417,7 @@ namespace Chess.Test
         public void ReadRule()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Find(new Rule());
@@ -429,7 +429,7 @@ namespace Chess.Test
         public void ReadCoordinate()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Find(new Coordinate());
@@ -441,7 +441,7 @@ namespace Chess.Test
         public void ReadMove()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Find(new Move());
@@ -456,7 +456,7 @@ namespace Chess.Test
         public void UpdatePawn()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -474,7 +474,7 @@ namespace Chess.Test
         public void UpdateKnight()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -493,7 +493,7 @@ namespace Chess.Test
         public void UpdateRook()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -512,7 +512,7 @@ namespace Chess.Test
         public void UpdateBishops()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -531,7 +531,7 @@ namespace Chess.Test
         public void UpdateQueen()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -550,7 +550,7 @@ namespace Chess.Test
         public void UpdateKing()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -569,7 +569,7 @@ namespace Chess.Test
         public void UpdateTwoPlayerBoard()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -588,7 +588,7 @@ namespace Chess.Test
         public void UpdatePlayerBoard()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -607,7 +607,7 @@ namespace Chess.Test
         public void UpdateGame()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -628,7 +628,7 @@ namespace Chess.Test
         public void UpdatePlayer()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -647,7 +647,7 @@ namespace Chess.Test
         public void UpdateField()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             sut.Add(new Game(sut, board));
@@ -666,7 +666,7 @@ namespace Chess.Test
         public void UpdateRuleSet()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Update(new RuleSet() { Id = 1 });
@@ -678,7 +678,7 @@ namespace Chess.Test
         public void UpdateRule()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Update(new Rule() { Id = 1});
@@ -690,7 +690,7 @@ namespace Chess.Test
         public void UpdateCoordinate()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Update(new Coordinate() { Id = 1 });
@@ -702,7 +702,7 @@ namespace Chess.Test
         public void UpdateMove()
         {
             // Arrange
-            var sut = GetHandler();
+            var sut = ContextFactory.GetChessHandler();
 
             // Act
             Action actual = () => sut.Update(new Move() { Id = 1 });
@@ -713,11 +713,5 @@ namespace Chess.Test
         #endregion
         #endregion
 
-        private IGenericRepository GetHandler()
-        {
-            using var factory = new ContextFactory();
-            var handler = factory.GetHandler(factory.CreateMemoryContext<ChessRepository>());
-            return handler;
-        }
     }
 }

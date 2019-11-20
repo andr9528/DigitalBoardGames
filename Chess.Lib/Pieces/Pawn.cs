@@ -8,8 +8,6 @@ namespace Chess.Lib.Concrete.Pieces
 {
     public class Pawn : Piece
     {
-        private readonly IGenericRepository _handler;
-
         /// <summary>
         /// This Constructor is to be used when creating a new game.
         /// </summary>
@@ -17,12 +15,9 @@ namespace Chess.Lib.Concrete.Pieces
         /// <param name="handler"></param>
         public Pawn(IBoard board, IGenericRepository handler) : base()
         {
-            _handler = handler;
             var boardType = board.GetType();
 
-            var rules = CreateRules(boardType);
-
-            RuleSet = new RuleSet(typeof(Pawn), rules) { Type = SetType.Piece };
+            SetupRuleSet(handler, GetType(), boardType);
         }
         /// <summary>
         /// This Constructor is to be used by...

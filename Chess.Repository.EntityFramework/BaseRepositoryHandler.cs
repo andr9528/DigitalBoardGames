@@ -7,6 +7,7 @@ using Chess.Lib.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Repository.Core;
+using Utilities.Extensions.Exceptions;
 
 namespace Chess.Repository.EntityFramework
 {
@@ -117,6 +118,7 @@ namespace Chess.Repository.EntityFramework
             if (r.Type != default) query = query.Where(x => x.Type == r.Type);
 
             if (!r.TypeName.IsNullOrEmpty()) query = query.Where(x => x.TypeName.Contains(r.TypeName));
+            if (!r.BoardTypeName.IsNullOrEmpty()) query = query.Where(x => x.BoardTypeName.Contains(r.BoardTypeName));
             
             return query;
         }
@@ -155,7 +157,7 @@ namespace Chess.Repository.EntityFramework
             var result = query.ToList();
             if (result.Any())
                 return new List<T>(result);
-            throw new Exception($"Found no result for {typeof(T).Name}");
+            throw IncorrectResultCountException.Constructor<T>(1, result.Count);
         }
         // Create methods for all the different classes, where you should be able to get multiple specific elements.
 
@@ -230,8 +232,8 @@ namespace Chess.Repository.EntityFramework
             if (result.Count() == 1)
                 return result.First();
             if (result.Count() > 1)
-                throw new Exception($"More than 1 result found when searching for a single {typeof(T).Name}");
-            throw new Exception($"No results found when searching for a {typeof(T).Name}");
+                throw IncorrectResultCountException.Constructor<T>(1,result.Count, true);
+            throw IncorrectResultCountException.Constructor<T>(1, result.Count);
         }
         // Create methods for all the different classes, where you should be able to get one specific element.
 

@@ -31,6 +31,8 @@ namespace Utilities.Factories
         }
         #endregion
 
+        private static readonly ContextFactory _factory = new ContextFactory();
+
         public T CreateMemoryContext<T>() where T : DbContext
         {
             var connection = new SqliteConnection("DataSource=:memory:");
@@ -112,6 +114,11 @@ namespace Utilities.Factories
             if(handler != null)
                 return handler;
             throw new ArgumentException("Imputed context doesn't match any known Handlers", nameof(context));
+        }
+
+        public static IGenericRepository GetChessHandler()
+        {
+            return _factory.GetHandler(_factory.CreateMemoryContext<ChessRepository>());
         }
     }
 }
