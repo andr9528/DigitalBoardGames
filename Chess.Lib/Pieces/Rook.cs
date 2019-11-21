@@ -17,7 +17,7 @@ namespace Chess.Lib.Concrete.Pieces
         public Rook(IBoard board, IGenericRepository handler) : base()
         {
             var boardType = board.GetType();
-
+            
             SetupRuleSet(handler, GetType(), boardType);
         }
         
