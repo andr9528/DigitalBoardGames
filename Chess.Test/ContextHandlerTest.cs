@@ -357,9 +357,9 @@ namespace Chess.Test
 
             sut.Add(new Game(sut, board));
             sut.Save();
-
+            
             // Act
-            var actual = sut.Find(new Game() {BoardId = 1, Turn = 0});
+            var actual = sut.Find(new Game() {Id = 1, Turn = 0});
 
             // Assert
             Assert.NotNull(actual);

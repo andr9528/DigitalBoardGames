@@ -14,7 +14,7 @@ namespace Chess.Repository.EntityFramework.Config
 
             builder.Property(x => x.RowVersion).IsRowVersion();
 
-            builder.HasIndex(x => new {x.Type, x.TypeName}).HasName("TypeIndex").IsUnique();
+            builder.HasIndex(x => new {x.Type, x.TypeName, x.BoardTypeName}).HasName("TypeIndex").IsUnique();
 
             builder.HasMany(x => (ICollection<Rule>)x.Rules).WithOne();
         }

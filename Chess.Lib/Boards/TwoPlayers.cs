@@ -39,6 +39,8 @@ namespace Chess.Lib.Concrete.Boards
 
         private void CreateFieldsWithAssignedPieces()
         {
+            Fields = new List<IField>();
+
             for (int y = 1; y <= 8; y++)
             {
                 for (int x = 1; x <= 8; x++)

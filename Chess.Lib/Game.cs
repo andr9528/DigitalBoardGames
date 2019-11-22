@@ -7,12 +7,10 @@ namespace Chess.Lib.Concrete
 {
     public class Game : IGame
     {
-        private readonly IGenericRepository _handler;
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
         public IBoard Board { get; set; }
-        public int BoardId { get; set; }
         public IRuleSet RuleSet { get; set; }
         public int RuleSetId { get; set; }
         public int Turn { get; set; }
@@ -25,7 +23,6 @@ namespace Chess.Lib.Concrete
         /// <param name="board"></param>
         public Game(IGenericRepository handler, IBoard board)
         {
-            _handler = handler;
             Board = board;
             IsInstantiated = true;
 

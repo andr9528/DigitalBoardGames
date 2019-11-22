@@ -7,8 +7,9 @@ namespace Chess.Lib.Core
         ICoordinate Coordinate { get; set; }
         int CoordinateId { get; set; }
         IPiece Piece { get; set; }
-        int PieceId { get; set; }
         IBoard Board { get; set; }
         int BoardId { get; set; }
+
+        int? PieceId { get; set; }
     }
 }

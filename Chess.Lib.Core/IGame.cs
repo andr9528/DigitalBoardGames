@@ -7,7 +7,6 @@ namespace Chess.Lib.Core
     public interface IGame : IEntity
     {
         IBoard Board { get; set; }
-        int BoardId { get; set; }
         IRuleSet RuleSet { get; set; }
         int RuleSetId { get; set; }
         int Turn { get; set; }

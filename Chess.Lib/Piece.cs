@@ -21,7 +21,8 @@ namespace Chess.Lib.Concrete
         public int PlayerBoardId { get; set; }
         public IPlayerBoard PlayerBoard { get; set; }
         public IField Field { get; set; }
-        public int FieldId { get; set; }
+
+        public int? FieldId { get; set; }
 
         public abstract bool VerifyMove(IMove move, PlayerFacing directionFacing);
         protected abstract List<IRule> TwoPlayerRules();

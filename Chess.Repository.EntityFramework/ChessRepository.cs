@@ -79,6 +79,7 @@ namespace Chess.Repository.EntityFramework
             modelBuilder.ApplyConfiguration(new KnightConfig());
             modelBuilder.ApplyConfiguration(new QueenConfig());
             modelBuilder.ApplyConfiguration(new RookConfig());
+
         }
     }
 }
