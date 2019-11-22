@@ -7,7 +7,7 @@ namespace Chess.Lib.Concrete
         public int Id { get; set; }
         public byte[] RowVersion { get; set; }
         public bool IsInstantiated { get; set; }
-        public ICoordinate From => Piece.Field.Coordinate;
+        public ICoordinate From => Piece.Field.Field.Coordinate;
         public ICoordinate To { get; set; }
         public int CoordinateToId { get; set; }
         public int Turn { get; set; }

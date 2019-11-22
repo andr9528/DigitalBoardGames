@@ -16,7 +16,7 @@ namespace Chess.Repository.EntityFramework.Config
             builder.Property(x => x.RowVersion).IsRowVersion();
             builder.Ignore(x => x.PieceId);
 
-            builder.HasOne(x => (Piece) x.Piece).WithOne(x => (Field) x.Field).IsRequired(false);
+            builder.HasOne(x => (FieldPiece) x.Piece).WithOne(x => (Field) x.Field).HasForeignKey<FieldPiece>(x => x.FieldId).IsRequired(false);
 
             builder.HasOne(x => (Coordinate)x.Coordinate).WithOne().HasForeignKey<Field>(x => x.CoordinateId);
             builder.HasOne(x => (Board)x.Board).WithMany(x => (ICollection<Field>)x.Fields).HasForeignKey(x => x.BoardId);

@@ -72,7 +72,7 @@ namespace Chess.Lib.Concrete.Boards
 
         private IField AssignPawns(IField field, IPlayerBoard player)
         {
-            field.Piece =
+            field.Piece.Piece =
                 player.Pieces.Select(x => x).Where(x => x.Discriminator == nameof(Pawn)).ToList()[
                     field.Coordinate.X - 1];
 
@@ -81,7 +81,7 @@ namespace Chess.Lib.Concrete.Boards
 
         private IField AssignNonPawns(IField field, IPlayerBoard player)
         {
-            field.Piece = field.Coordinate.X switch
+            field.Piece.Piece = field.Coordinate.X switch
             {
                 1 => player.Pieces.First(x => x.Discriminator == nameof(Rook)),
                 2 => player.Pieces.First(x => x.Discriminator == nameof(Knight)),

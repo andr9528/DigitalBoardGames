@@ -38,9 +38,9 @@ namespace Chess.Test
             foreach (var piece in pieces)
             {
                 actual.Add(ReferenceEquals(piece,
-                    fields.Select(x => x.Piece).First(x =>
-                        x.Field.Coordinate.X == piece.Field.Coordinate.X &&
-                        x.Field.Coordinate.Y == piece.Field.Coordinate.Y)));
+                    fields.Select(x => x.Piece.Piece).First(x =>
+                        x.Field.Field.Coordinate.X == piece.Field.Field.Coordinate.X &&
+                        x.Field.Field.Coordinate.Y == piece.Field.Field.Coordinate.Y)));
             }
 
             // Assert
