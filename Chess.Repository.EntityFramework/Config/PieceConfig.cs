@@ -16,6 +16,8 @@ namespace Chess.Repository.EntityFramework.Config
             builder.Ignore(x => x.FieldId);
 
             builder.HasOne(x => (RuleSet)x.RuleSet).WithMany().HasForeignKey(x => x.RuleSetId);
+
+            builder.HasOne(x => (FieldPiece) x.Field).WithOne(x => (Piece) x.Piece).HasForeignKey<FieldPiece>(x => x.PieceId).IsRequired(false);
         }
     }
 }

@@ -72,9 +72,9 @@ namespace Chess.Repository.EntityFramework
 
         private IQueryable<Piece> BuildQuery(IPiece p, IQueryable<Piece> query)
         {
-            query = query.Include(x => x.Field);
+            query = query.Include(x => x.Field).ThenInclude(x => x.Field);
 
-            if (p.FieldId != default) query = query.Where(x => x.Field.Id == p.FieldId);
+            if (p.FieldId != default) query = query.Where(x => x.Field.Field.Id == p.FieldId);
             if (p.PlayerBoardId != default) query = query.Where(x => x.PlayerBoardId == p.PlayerBoardId);
             if (p.RuleSetId != default) query = query.Where(x => x.RuleSetId == p.RuleSetId);
             if (p.Id != default) query = query.Where(x => x.Id == p.Id);
@@ -135,11 +135,11 @@ namespace Chess.Repository.EntityFramework
         private IQueryable<Field> BuildQuery(IField f, IQueryable<Field> query)
         {
             query = query.Include(x => x.Coordinate);
-            query = query.Include(x => x.Piece);
+            query = query.Include(x => x.Piece).ThenInclude(x => x.Piece);
 
             if (f.Id != default) query = query.Where(x => x.Id == f.Id);
             if (f.CoordinateId != default) query = query.Where(x => x.CoordinateId == f.CoordinateId);
-            if (f.PieceId != default) query = query.Where(x => x.Piece.Id == f.PieceId);
+            if (f.PieceId != default) query = query.Where(x => x.Piece.Piece.Id == f.PieceId);
             if (f.BoardId != default) query = query.Where(x => x.BoardId == f.BoardId);
 
             if (f.Coordinate != default) 

@@ -20,7 +20,7 @@ namespace Chess.Lib.Concrete
         public string Discriminator { get; set;}
         public int PlayerBoardId { get; set; }
         public IPlayerBoard PlayerBoard { get; set; }
-        public IField Field { get; set; }
+        public IFieldPiece Field { get; set; }
 
         public int? FieldId { get; set; }
 
@@ -60,6 +60,7 @@ namespace Chess.Lib.Concrete
 
         protected Piece()
         {
+            if (Field == null) Field = new FieldPiece();
             IsInstantiated = true;
             Discriminator = GetType().Name;
         }
