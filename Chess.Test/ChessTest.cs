@@ -44,6 +44,7 @@ namespace Chess.Test
 
             // Assert
             Assert.True(!actual.Exists(x => x == false));
+
         }
     }
 }
