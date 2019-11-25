@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Chess.Lib.Concrete;
 using Chess.Lib.Core;
 using Repository.Core;
 
@@ -142,7 +143,8 @@ namespace Chess.Repository.EntityFramework
                     throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
 
-            return entity as T;
+            if (entity != null) return entity as T;
+            throw new ArgumentNullException($"Searching somehow returned a null", nameof(entity));
         }
 
         ICollection<T> IGenericRepository.FindMultiple<T>(T predicate)
@@ -157,10 +159,14 @@ namespace Chess.Repository.EntityFramework
                 //    entities = FindMultipleYourDomainClassInPlural(y) as ICollection<T>;
                 //    break;
                 case IPiece p:
-                    entities = FindMultiplePieces(p) as ICollection<T>;
+                    // Casting the hole list of Pieces to ICollection<T> fails silently (No Exception).
+                    // Instead each Piece has to be cast to T one at a time.
+                    var pieces = FindMultiplePieces(p);
+                    entities = ((List<Piece>)pieces).ConvertAll(x=>x as T);
                     break;
                 case IBoard b:
-                    entities = FindMultipleBoards(b) as ICollection<T>;
+                    var boards = FindMultipleBoards(b);
+                    entities = ((List<Board>)boards).ConvertAll(x=>x as T);
                     break;
                 case IPlayerBoard p:
                     entities = FindMultiplePlayerBoards(p) as ICollection<T>;
@@ -190,7 +196,8 @@ namespace Chess.Repository.EntityFramework
                     throw new Exception($"No known case exists for the Entity of type {typeof(T).FullName}", new Exception("ERROR ERROR ERROR"));
             }
 
-            return entities;
+            if (entities != null) return entities;
+            throw new ArgumentNullException($"Searching somehow returned a null", nameof(entities));
         }
 
         bool IGenericRepository.Update<T>(T element)

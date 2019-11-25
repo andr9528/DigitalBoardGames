@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 using Chess.Lib.Concrete;
@@ -16,7 +15,7 @@ namespace Chess.Repository.EntityFramework
     /// </summary>   
     public abstract class BaseRepositoryHandler : IBaseRepository
     {
-        internal ChessRepository Repo = null;
+        internal ChessRepository Repo;
 
         protected BaseRepositoryHandler(ChessRepository repo)
         {
@@ -159,7 +158,8 @@ namespace Chess.Repository.EntityFramework
         {
             var result = query.ToList();
             if (result.Any())
-                return new List<T>(result);
+                //return new List<T>(result);
+                return result;
             throw IncorrectResultCountException.Constructor<T>(1, result.Count);
         }
         // Create methods for all the different classes, where you should be able to get multiple specific elements.
