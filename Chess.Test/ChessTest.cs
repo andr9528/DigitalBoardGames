@@ -26,8 +26,7 @@ namespace Chess.Test
             var handler = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(handler, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
             var sut = new Game(handler, board);
-            handler.Save();
-
+            
             // Act
             var fields = (List<IField>)sut.Board.Fields;
             var pieces = new List<IPiece>();

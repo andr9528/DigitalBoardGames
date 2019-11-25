@@ -162,11 +162,11 @@ namespace Chess.Repository.EntityFramework
                     // Casting the hole list of Pieces to ICollection<T> fails silently (No Exception).
                     // Instead each Piece has to be cast to T one at a time.
                     var pieces = FindMultiplePieces(p);
-                    entities = ((List<Piece>)pieces).ConvertAll(x=>x as T);
+                    entities = ((List<Piece>) pieces).ConvertAll(x => x as T);
                     break;
                 case IBoard b:
                     var boards = FindMultipleBoards(b);
-                    entities = ((List<Board>)boards).ConvertAll(x=>x as T);
+                    entities = ((List<Board>) boards).ConvertAll(x => x as T);
                     break;
                 case IPlayerBoard p:
                     entities = FindMultiplePlayerBoards(p) as ICollection<T>;
