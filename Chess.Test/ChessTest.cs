@@ -26,6 +26,7 @@ namespace Chess.Test
             var handler = ContextFactory.GetChessHandler();
             var board = new TwoPlayers(handler, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
             var sut = new Game(handler, board);
+            handler.Save();
 
             // Act
             var fields = (List<IField>)sut.Board.Fields;
@@ -38,9 +39,8 @@ namespace Chess.Test
             foreach (var piece in pieces)
             {
                 actual.Add(ReferenceEquals(piece,
-                    fields.Select(x => x.Piece.Piece).First(x =>
-                        x.Field.Field.Coordinate.X == piece.Field.Field.Coordinate.X &&
-                        x.Field.Field.Coordinate.Y == piece.Field.Field.Coordinate.Y)));
+                    fields.First(x => x.Coordinate.X == piece.Field.Field.Coordinate.X &&
+                                      x.Coordinate.Y == piece.Field.Field.Coordinate.Y).Piece.Piece));
             }
 
             // Assert

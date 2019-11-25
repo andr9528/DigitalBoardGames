@@ -76,6 +76,10 @@ namespace Chess.Lib.Concrete.Boards
                 player.Pieces.Select(x => x).Where(x => x.Discriminator == nameof(Pawn)).ToList()[
                     field.Coordinate.X - 1];
 
+            field.Piece.Field = field;
+
+            field.Piece.Piece.Field = field.Piece;
+
             return field;
         }
 
@@ -93,6 +97,10 @@ namespace Chess.Lib.Concrete.Boards
                 8 => player.Pieces.Last(x => x.Discriminator == nameof(Rook)),
                 _ => throw new ArgumentException("Invalid Y coordinate value of 'Field'", nameof(field))
             };
+
+            field.Piece.Field = field;
+
+            field.Piece.Piece.Field = field.Piece;
 
             return field;
         }

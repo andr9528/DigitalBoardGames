@@ -60,7 +60,6 @@ namespace Chess.Lib.Concrete
 
         protected Piece()
         {
-            if (Field == null) Field = new FieldPiece();
             IsInstantiated = true;
             Discriminator = GetType().Name;
         }
