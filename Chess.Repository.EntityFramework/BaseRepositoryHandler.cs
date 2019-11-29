@@ -42,7 +42,7 @@ namespace Chess.Repository.EntityFramework
 
         internal string GetAmountAdded(ICollection<bool> results)
         {
-            return string.Format("Added {0} out of {1}.", results.Where(b => b).Count(), results.Count);
+            return $"Added {results.Where(b => b).Count()} out of {results.Count}.";
         }
         #endregion
 
