@@ -15,13 +15,16 @@ namespace Chess.Lib.Concrete.Boards
         /// This Constructor is to be used when creating a new game.
         /// </summary>
         /// <param name="handler"></param>
+        /// <param name="game"></param>
         /// <param name="players"></param>
-        public TwoPlayers(IGenericRepository handler, params Player[] players) : base()
+        public TwoPlayers(IGenericRepository handler, IGame game, params Player[] players) : base()
         {
             if (players.Length != 2)
                 throw new ArgumentException(
                     "There is either too few or too many players given to the constructor of the class. There need to be exactly 2, no more no less",
                     nameof(players));
+
+            Game = game;
 
             var (colour1, colour2) = GetColours();
             var (facing1, facing2) = GetFacing();
@@ -45,7 +48,7 @@ namespace Chess.Lib.Concrete.Boards
             {
                 for (int x = 1; x <= 8; x++)
                 {
-                    var field = AssignPieceIfApplicable(new Field() { Coordinate = new Coordinate() { X = x, Y = y } });
+                    var field = AssignPieceIfApplicable(new Field() {Coordinate = new Coordinate(x, y, Game)});
 
                     Fields.Add(field);
                 }

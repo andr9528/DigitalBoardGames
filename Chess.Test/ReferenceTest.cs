@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Chess.Test
 {
-    public class ChessTest
+    public class ReferenceTest
     {
         /// <summary>
         /// Given a piece and Fields that contain Pieces.
@@ -24,9 +24,9 @@ namespace Chess.Test
         {
             // Arrange
             var handler = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(handler, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
-            var sut = new Game(handler, board);
-            
+            var sut = new Game(handler, typeof(TwoPlayers), new Player() {Name = "Player1"},
+                new Player() {Name = "Player2"});
+
             // Act
             var fields = (List<IField>)sut.Board.Fields;
             var pieces = new List<IPiece>();

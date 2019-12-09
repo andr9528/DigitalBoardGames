@@ -14,9 +14,8 @@ namespace Chess.Repository.EntityFramework.Config
             builder.Property(x => x.Id).HasColumnName("MoveId");
 
             builder.Property(x => x.RowVersion).IsRowVersion();
-
-            builder.Ignore(x => x.From);
-
+            
+            builder.HasOne(x => (Coordinate)x.From).WithOne().HasForeignKey<Move>(x => x.CoordinateFromId);
             builder.HasOne(x => (Coordinate)x.To).WithOne().HasForeignKey<Move>(x => x.CoordinateToId);
             builder.HasOne(x => (Piece)x.Piece).WithMany(x => (ICollection<Move>)x.MoveHistory).HasForeignKey(x => x.PieceId);
         }

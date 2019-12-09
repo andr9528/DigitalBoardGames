@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Chess.Lib.Core;
 using Chess.Lib.Enum;
 using Repository.Core;
@@ -20,10 +21,15 @@ namespace Chess.Lib.Concrete
         /// This Constructor is to be used when creating a new game.
         /// </summary>
         /// <param name="handler"></param>
-        /// <param name="board"></param>
-        public Game(IGenericRepository handler, IBoard board)
+        /// <param name="boardType"></param>
+        /// <param name="players"></param>
+        public Game(IGenericRepository handler, Type boardType, params Player[] players)
         {
-            Board = board;
+            if (!typeof(IBoard).IsAssignableFrom(boardType))
+                throw new ArgumentException("The Board type supplied is not assignable from IBoard", nameof(boardType));
+            
+            Board = Activator.CreateInstance(boardType, handler, this, players) as IBoard;
+
             IsInstantiated = true;
 
             var rules = new List<IRule>()

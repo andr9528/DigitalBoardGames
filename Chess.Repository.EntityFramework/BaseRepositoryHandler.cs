@@ -83,6 +83,16 @@ namespace Chess.Repository.EntityFramework
             return query;
         }
 
+        private IQueryable<Coordinate> BuildQuery(ICoordinate p, IQueryable<Coordinate> query)
+        {
+            if (p.GameId != default) query = query.Where(x => x.GameId == p.GameId);
+            if (p.Y != default) query = query.Where(x => x.Y == p.Y);
+            if (p.X != default) query = query.Where(x => x.X == p.X);
+            if (p.Id != default) query = query.Where(x => x.Id == p.Id);
+            
+            return query;
+        }
+
         private IQueryable<Board> BuildQuery(IBoard b, IQueryable<Board> query)
         {
             if (b.RuleSetId != default) query = query.Where(x => x.RuleSetId == b.RuleSetId);
@@ -225,6 +235,14 @@ namespace Chess.Repository.EntityFramework
             return FindMultipleResults(query);
         }
 
+        internal ICollection<Coordinate> findMultipleCoordinates(ICoordinate c)
+        {
+            var query = Repo.Coordinates.AsQueryable();
+            query = BuildQuery(c, query);
+
+            return FindMultipleResults(query);
+        }
+
         #endregion
 
         #region Find Single Methods
@@ -296,6 +314,14 @@ namespace Chess.Repository.EntityFramework
         {
             var query = Repo.Fields.AsQueryable();
             query = BuildQuery(f, query);
+
+            return FindAResult(query);
+        }
+
+        internal ICoordinate findCoordinate(ICoordinate c)
+        {
+            var query = Repo.Coordinates.AsQueryable();
+            query = BuildQuery(c, query);
 
             return FindAResult(query);
         }

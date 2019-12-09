@@ -6,5 +6,7 @@ namespace Chess.Lib.Core
     {
         int X { get; set; }
         int Y { get; set; }
+        int GameId { get; set; }
+        IGame Game { get; set; }
     }
 }

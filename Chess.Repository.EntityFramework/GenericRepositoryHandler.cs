@@ -131,8 +131,8 @@ namespace Chess.Repository.EntityFramework
                     entity = FindRuleSet(r);
                     break;
                 case ICoordinate c:
-                    throw new InvalidOperationException(
-                        "You are not allowed to find a coordinate by itself. Find it by finding it on either a Move or a Field");
+                    entity = findCoordinate(c);
+                    break;
                 case IRule r:
                     throw new InvalidOperationException(
                         "You are not allowed to find a rule by itself. Find it by finding its RuleSet");
@@ -184,8 +184,8 @@ namespace Chess.Repository.EntityFramework
                     entities = FindMultipleRuleSets(r) as ICollection<T>;
                     break;
                 case ICoordinate c:
-                    throw new InvalidOperationException(
-                        "You are not allowed to find a coordinate by itself. Find it by finding it on either a Move or a Field");
+                    entities = findMultipleCoordinates(c) as ICollection<T>;
+                    break;
                 case IRule r:
                     throw new InvalidOperationException(
                         "You are not allowed to find a rule by itself. Find it by finding its RuleSet");

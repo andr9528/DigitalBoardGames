@@ -15,18 +15,6 @@ namespace Chess.Test
 {
     public class ContextHandlerTest
     {
-        //[Fact]
-        //public void Test1()
-        //{
-        //    // Arrange
-        //    var sut = ContextFactory.GetChessHandler();
-
-        //    // Act
-
-
-        //    // Assert
-
-        //}
         #region CRUD
         #region Create
         [Fact]
@@ -108,7 +96,7 @@ namespace Chess.Test
             var sut = ContextFactory.GetChessHandler();
 
             // Act
-            Action actual = () => sut.Add(new TwoPlayers(sut, new Player(){ Name = "Player1"}, new Player() { Name = "Player2" }));
+            Action actual = () => sut.Add(new TwoPlayers(sut, new Game(), new Player(){ Name = "Player1"}, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Assert
@@ -134,10 +122,9 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
             // Act
-            var actual = sut.Add(new Game(sut, board));
+            var actual = sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Assert
@@ -225,9 +212,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() {Name = "Player1"}, new Player() {Name = "Player2"});
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             
             // Act
@@ -241,9 +227,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -257,9 +242,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -273,9 +257,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -289,9 +272,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -305,9 +287,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -321,9 +302,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -337,9 +317,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -353,9 +332,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             
             // Act
@@ -370,9 +348,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -386,9 +363,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -402,9 +378,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
 
             // Act
@@ -431,11 +406,14 @@ namespace Chess.Test
             // Arrange
             var sut = ContextFactory.GetChessHandler();
 
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Save();
+
             // Act
-            Action actual = () => sut.Find(new Coordinate());
+            var actual = sut.Find(new Coordinate() {X = 1, Y = 3, GameId = 1});
 
             // Assert
-            Assert.Throws<InvalidOperationException>(actual);
+            Assert.NotNull(actual);
         }
         [Fact]
         public void ReadMove()
@@ -457,9 +435,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.FindMultiple(new Pawn() {PlayerBoardId = 1}).First();
             obj.Alive = false;
@@ -475,9 +452,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.FindMultiple(new Knight() { PlayerBoardId = 1 }).First();
             obj.Alive = false;
@@ -494,9 +470,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.FindMultiple(new Rook() { PlayerBoardId = 1 }).First();
             obj.Alive = false;
@@ -513,9 +488,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.FindMultiple(new Bishop() { PlayerBoardId = 1 }).First();
             obj.Alive = false;
@@ -532,9 +506,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new Queen() { PlayerBoardId = 1 });
             obj.Alive = false;
@@ -551,9 +524,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new King() { PlayerBoardId = 1 });
             obj.Alive = false;
@@ -570,9 +542,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new TwoPlayers() {GameId = 1});
             ((List<IPiece>) obj.Players.First().Pieces).Find(x => x.Discriminator == nameof(Queen)).Alive = false;
@@ -589,9 +560,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new PlayerBoard() {BoardId = 1, PlayerId = 1});
             ((List<IPiece>) obj.Pieces).Find(x => x.Discriminator == nameof(Queen)).Alive = false;
@@ -608,11 +578,10 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
-            var obj = sut.Find(new Game() {Board = board, Turn = 0});
+            var obj = sut.Find(new Game() {Id = 1, Turn = 0});
             obj.Turn = 666;
 
             // Act
@@ -629,9 +598,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new Player() {Name = "Player1"});
             obj.Name = "ReadyPlayerOne";
@@ -648,9 +616,8 @@ namespace Chess.Test
         {
             // Arrange
             var sut = ContextFactory.GetChessHandler();
-            var board = new TwoPlayers(sut, new Player() { Name = "Player1" }, new Player() { Name = "Player2" });
 
-            sut.Add(new Game(sut, board));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
             sut.Save();
             var obj = sut.Find(new Field() {PieceId = 1});
             obj.PieceId = 4;
