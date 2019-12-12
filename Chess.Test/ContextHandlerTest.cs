@@ -116,7 +116,6 @@ namespace Chess.Test
             Assert.Throws<InvalidOperationException>(actual);
         }
 
-        // Will only ever be successful if the chain of object creation, that should happen on creating a game, is fully and correctly implemented.
         [Fact]
         public void InsertGame()
         {
@@ -124,7 +123,8 @@ namespace Chess.Test
             var sut = ContextFactory.GetChessHandler();
 
             // Act
-            var actual = sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            var actual = sut.Add(new Game(sut, typeof(TwoPlayers), new Player() {Name = "Player1"},
+                new Player() {Name = "Player2"}));
             sut.Save();
 
             // Assert
@@ -333,7 +333,8 @@ namespace Chess.Test
             // Arrange
             var sut = ContextFactory.GetChessHandler();
 
-            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() {Name = "Player1"},
+                new Player() {Name = "Player2"}));
             sut.Save();
             
             // Act
@@ -579,7 +580,8 @@ namespace Chess.Test
             // Arrange
             var sut = ContextFactory.GetChessHandler();
 
-            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            sut.Add(new Game(sut, typeof(TwoPlayers), new Player() {Name = "Player1"},
+                new Player() {Name = "Player2"}));
             sut.Save();
             var obj = sut.Find(new Game() {Id = 1, Turn = 0});
             obj.Turn = 666;
