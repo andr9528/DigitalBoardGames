@@ -24,7 +24,8 @@ namespace Chess.Test
             _testTurnCounter = 1;
 
             // Act
-            var actual = _handler.Add(new Game(_handler, typeof(TwoPlayers), new Player() { Name = "Player1" }, new Player() { Name = "Player2" }));
+            var actual = _handler.Add(new Game(_handler, typeof(TwoPlayers), new Player() {Name = "Player1"},
+                new Player() {Name = "Player2"}));
             _handler.Save();
 
             _game = _handler.Find(new Game() {Id = 1, Turn = 0});
@@ -41,11 +42,12 @@ namespace Chess.Test
         {
             ChessSetup();
 
-            Turn1InvalidMove1();
-            Turn1ValidMove();
+            Game1Turn1InvalidMove1();
+            Game1Turn1ValidMove();
+            //...
         }
 
-        private void Turn1InvalidMove1()
+        private void Game1Turn1InvalidMove1()
         {
             // Arrange
 
@@ -60,7 +62,7 @@ namespace Chess.Test
                 
             }
         }
-        private void Turn1ValidMove()
+        private void Game1Turn1ValidMove()
         {
             // Arrange
 
@@ -73,7 +75,7 @@ namespace Chess.Test
         }
         #endregion
 
-        //private void Turn_InvalidMove_()
+        //private void Game_Turn_InvalidMove_()
         //{
         //    // arrange
 
@@ -89,7 +91,7 @@ namespace Chess.Test
         //    }
         //}
 
-        //private void Turn_ValidMove()
+        //private void Game_Turn_ValidMove()
         //{
         //    // Arrange
 
