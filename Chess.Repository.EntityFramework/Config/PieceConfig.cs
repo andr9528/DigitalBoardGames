@@ -13,11 +13,11 @@ namespace Chess.Repository.EntityFramework.Config
             builder.Property(x => x.Id).HasColumnName("PieceId");
 
             builder.Property(x => x.RowVersion).IsRowVersion();
-            builder.Ignore(x => x.FieldId);
 
             builder.HasOne(x => (RuleSet)x.RuleSet).WithMany().HasForeignKey(x => x.RuleSetId);
 
-            builder.HasOne(x => (FieldPiece) x.Field).WithOne(x => (Piece) x.Piece).HasForeignKey<FieldPiece>(x => x.PieceId).IsRequired(false);
+            builder.HasOne(x => (FieldPiece) x.Field).WithOne(x => (Piece) x.Piece)
+                .HasForeignKey<FieldPiece>(x => x.PieceId).IsRequired(false);
         }
     }
 }
