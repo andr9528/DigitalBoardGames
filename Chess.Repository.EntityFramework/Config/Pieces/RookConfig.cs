@@ -12,8 +12,6 @@ namespace Chess.Repository.EntityFramework.Config.Pieces
             base.Configure(builder);
 
             builder.HasDiscriminator(x => x.Discriminator).HasValue(nameof(Rook));
-
-            //builder.HasOne(x => (RuleSet)x.RuleSet).WithOne().HasForeignKey<Rook>(x => x.RuleSetId);
         }
     }
 }

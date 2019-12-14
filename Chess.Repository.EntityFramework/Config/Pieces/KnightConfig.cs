@@ -12,8 +12,6 @@ namespace Chess.Repository.EntityFramework.Config.Pieces
             base.Configure(builder);
 
             builder.HasDiscriminator(x => x.Discriminator).HasValue(nameof(Knight));
-
-            //builder.HasOne(x => (RuleSet)x.RuleSet).WithOne().HasForeignKey<Knight>(x => x.RuleSetId);
         }
     }
 }
